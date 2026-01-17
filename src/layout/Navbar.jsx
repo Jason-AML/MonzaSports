@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { ModalControl } from "../components/modal/ModalControl";
+import { TestDriveModal } from "../components/modal/requestTest/TestDriveModal";
 
 export const Navbar = () => {
   return (
-    <nav className="fixed top-0 w-full z-50 glass-nav text-white">
+    <nav className="fixed top-0 w-full z-50  text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
         <div className="flex items-center gap-12">
           <div className="flex items-center gap-3">
@@ -30,12 +32,10 @@ export const Navbar = () => {
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <button className="hidden lg:flex items-center gap-2 px-5 py-2.5 bg-accent text-background-dark text-xs font-bold uppercase tracking-widest rounded-lg transition-transform hover:scale-105">
-            <span className="material-symbols-outlined text-sm">
-              calendar_today
-            </span>
-            Request Test Drive
-          </button>
+          <ModalControl action="Test Drive" color="#00D3BB">
+            {({ closeModal }) => <TestDriveModal closeModal={closeModal} />}
+          </ModalControl>
+
           <div className="size-10 rounded-full border border-primary/30 overflow-hidden">
             <img
               className="w-full h-full object-cover"
