@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 
 export const Collections = () => {
   const [price, setPrice] = useState(500000);
+  const [active, setActive] = useState("Coupe");
+  const styles = ["Coupe", "Sedan", "SUV", "Spider"];
   return (
     <>
       <Layout>
@@ -33,9 +35,6 @@ export const Collections = () => {
                     <option>Price: High to Low</option>
                     <option>Performance: 0-100</option>
                   </select>
-                  <span className="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-gray-500">
-                    expand_more
-                  </span>
                 </div>
               </div>
             </div>
@@ -49,7 +48,6 @@ export const Collections = () => {
                     <div className="space-y-2">
                       <label className="flex items-center gap-3 cursor-pointer group">
                         <input
-                          checked=""
                           className="rounded border-white/10 bg-white/5 text-primary focus:ring-primary/20"
                           type="checkbox"
                         />
@@ -82,10 +80,19 @@ export const Collections = () => {
                       Body Style
                     </h4>
                     <div className="grid grid-cols-2 gap-2">
-                      <button className="btn btn-accent">Coupe</button>
-                      <button className="btn btn-ghost">Sedan</button>
-                      <button className="btn btn-ghost">SUV</button>
-                      <button className="btn btn-ghost">Spider</button>
+                      {styles.map((item) => (
+                        <button
+                          key={item}
+                          className={`btn transition-all ${
+                            active === item
+                              ? "bg-[#00C79F] text-black"
+                              : "btn-ghost"
+                          }`}
+                          onClick={() => setActive(item)}
+                        >
+                          {item}
+                        </button>
+                      ))}
                     </div>
                   </div>
                   <div>
