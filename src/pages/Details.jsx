@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Layout } from "../layout/Layout";
 
 export const Details = () => {
@@ -69,7 +70,7 @@ export const Details = () => {
                     TECHNICAL SPECIFICATIONS
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
-                    <div className="bg-panel-dark p-8 border border-border-dark group hover:border-primary/50 transition-colors">
+                    <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
                       <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
                         Engine
                       </p>
@@ -78,21 +79,21 @@ export const Details = () => {
                         Natural Aspirated
                       </p>
                     </div>
-                    <div className="bg-panel-dark p-8 border border-border-dark group hover:border-primary/50 transition-colors">
+                    <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
                       <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
                         Power
                       </p>
                       <p className="text-white text-2xl font-bold">785 HP</p>
                       <p className="text-accent text-sm mt-1">At 8,500 RPM</p>
                     </div>
-                    <div className="bg-panel-dark p-8 border border-border-dark group hover:border-primary/50 transition-colors">
+                    <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
                       <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
                         0-100 KM/H
                       </p>
                       <p className="text-white text-2xl font-bold">2.8 SEC</p>
                       <p className="text-accent text-sm mt-1">Launch Control</p>
                     </div>
-                    <div className="bg-panel-dark p-8 border border-border-dark group hover:border-primary/50 transition-colors">
+                    <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
                       <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
                         Top Speed
                       </p>
@@ -101,7 +102,7 @@ export const Details = () => {
                         Electonically Limited
                       </p>
                     </div>
-                    <div className="bg-panel-dark p-8 border border-border-dark group hover:border-primary/50 transition-colors">
+                    <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
                       <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
                         Torque
                       </p>
@@ -110,7 +111,7 @@ export const Details = () => {
                         Peak @ 6,750 RPM
                       </p>
                     </div>
-                    <div className="bg-panel-dark p-8 border border-border-dark group hover:border-primary/50 transition-colors">
+                    <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
                       <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
                         Weight
                       </p>
@@ -200,12 +201,15 @@ export const Details = () => {
                         </span>
                       </div>
                       <div className="space-y-4">
-                        <button className="w-full bg-accent text-background-dark h-14 rounded-lg font-bold text-base uppercase tracking-widest hover:brightness-110 shadow-[0_0_20px_rgba(0,199,159,0.3)] flex items-center justify-center gap-2">
+                        <Link
+                          to="/reservation"
+                          className="w-full bg-accent text-background-dark h-14 rounded-lg font-bold text-base uppercase tracking-widest hover:brightness-110 shadow-[0_0_20px_rgba(0,199,159,0.3)] flex items-center justify-center gap-2"
+                        >
                           <span className="material-symbols-outlined">
                             flash_on
                           </span>
                           Reserve Now
-                        </button>
+                        </Link>
                         <button className="w-full border border-border-dark hover:bg-border-dark text-white h-14 rounded-lg font-bold text-base uppercase tracking-widest transition-colors flex items-center justify-center gap-2">
                           <span className="material-symbols-outlined">
                             mail
@@ -229,11 +233,12 @@ export const Details = () => {
                           Down Payment
                         </label>
                         <div className="relative">
-                          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+                          <span className="absolute left-3 inset-y-0 flex items-center text-black pointer-events-none">
                             $
                           </span>
                           <input
-                            className="w-full bg-background-dark/50 border-border-dark rounded focus:ring-primary focus:border-primary text-sm pl-7 text-white"
+                            className="w-full h-10 bg-background-dark/50 border border-border-dark rounded
+               focus:ring-primary focus:border-primary text-sm pl-7 text-black"
                             type="text"
                             value="50,000"
                           />
@@ -255,7 +260,7 @@ export const Details = () => {
                             Est. APR
                           </label>
                           <input
-                            className="w-full bg-background-dark/50 border-border-dark rounded focus:ring-primary focus:border-primary text-sm text-white text-center"
+                            className="w-full bg-background-dark/50 border-border-dark rounded focus:ring-primary focus:border-primary text-sm text-black text-center"
                             type="text"
                             value="4.9%"
                           />
