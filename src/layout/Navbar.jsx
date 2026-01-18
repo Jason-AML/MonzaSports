@@ -1,40 +1,37 @@
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { ModalControl } from "../components/modal/ModalControl";
 import { TestDriveModal } from "../components/modal/requestTest/TestDriveModal";
 
 export const Navbar = () => {
+  const linkStyle = ({ isActive }) =>
+    `text-sm font-medium hover:text-primary transition-colors uppercase tracking-widest ${
+      isActive ? " text-[#00C79F]" : " hover:text-[#00C79F]"
+    }`;
   return (
     <nav className="fixed top-0 w-full z-50  text-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-10 h-20 flex items-center justify-between">
         <div className="flex items-center gap-12">
           <div className="flex items-center gap-3">
-            <h2 className="text-xl font-bold tracking-tighter">MONZA MOTORS</h2>
+            <NavLink to="/" className="text-xl font-bold tracking-tighter">
+              MONZA MOTORS
+            </NavLink>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <Link
-              className="text-sm font-medium hover:text-primary transition-colors uppercase tracking-widest"
-              to="/collections"
-            >
+            <NavLink className={linkStyle} to="/collections">
               Collections
-            </Link>
-            <Link
-              className="text-sm font-medium hover:text-primary transition-colors uppercase tracking-widest"
-              to="#"
-            >
+            </NavLink>
+            <NavLink className={linkStyle} to="*">
               Ownership
-            </Link>
-            <a
-              className="text-sm font-medium hover:text-primary transition-colors uppercase tracking-widest"
-              href="#"
-            >
+            </NavLink>
+            <NavLink className={linkStyle} to="*" href="*">
               Experience
-            </a>
+            </NavLink>
           </div>
         </div>
         <div className="flex items-center gap-6">
-          <ModalControl action="Test Drive" color="#00D3BB">
-            {({ closeModal }) => <TestDriveModal closeModal={closeModal} />}
-          </ModalControl>
+          <Link to="/register" className="btn btn-accent">
+            Registrar
+          </Link>
 
           <div className="size-10 rounded-full border border-primary/30 overflow-hidden">
             <img
