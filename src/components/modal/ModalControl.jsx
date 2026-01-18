@@ -15,7 +15,7 @@ export const ModalControl = ({ action, children, color = "#00D3BB" }) => {
       </button>
 
       {isModalOpen && (
-        <div className="modal modal-open">
+        <div className="modal modal-open z-1000">
           <div className="h-screen w-screen flex justify-center overflow-scroll ">
             {children({ closeModal })}
           </div>
