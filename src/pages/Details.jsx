@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { Layout } from "../layout/Layout";
+import { ModalControl } from "../components/modal/ModalControl";
+import { TestDriveModal } from "../components/modal/requestTest/TestDriveModal";
 
 export const Details = () => {
   return (
@@ -200,7 +202,7 @@ export const Details = () => {
                           MSRP
                         </span>
                       </div>
-                      <div className="space-y-4">
+                      <div className="space-y-4 flex flex-col justify-center items-center">
                         <Link
                           to="/reservation"
                           className="w-full bg-accent text-background-dark h-14 rounded-lg font-bold text-base uppercase tracking-widest hover:brightness-110 shadow-[0_0_20px_rgba(0,199,159,0.3)] flex items-center justify-center gap-2"
@@ -296,6 +298,11 @@ export const Details = () => {
                       <span className="material-symbols-outlined">map</span>
                     </button>
                   </div>
+                  <ModalControl action="Test Drive">
+                    {({ closeModal }) => (
+                      <TestDriveModal closeModal={closeModal} />
+                    )}
+                  </ModalControl>
                 </div>
               </div>
             </div>
