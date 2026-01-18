@@ -11,7 +11,7 @@ export const TestDriveModal = ({ closeModal }) => {
               Selected Model
             </div>
             <div>
-              <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-2">
+              <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-2 text-accent">
                 Porsche Taycan
               </h1>
               <p className="text-xl text-primary font-medium">
@@ -57,13 +57,13 @@ export const TestDriveModal = ({ closeModal }) => {
                 <span className="material-symbols-outlined text-xl">
                   calendar_month
                 </span>
-                <h3 className="font-bold tracking-wide uppercase text-sm">
+                <h3 className="font-bold tracking-wide uppercase text-sm text-accent">
                   Select Date
                 </h3>
               </div>
               <div className="bg-white/5 rounded-xl p-4 border border-white/5 flex justify-center">
                 {/*Calendar Header*/}
-                <calendar-date className="cally bg-white/5 border border-base-300 shadow-lg rounded-box">
+                <calendar-date className="cally bg-white/5 border border-base-300 shadow-lg rounded-box text-white">
                   <svg
                     aria-label="Previous"
                     className="fill-current size-4"
@@ -98,11 +98,11 @@ export const TestDriveModal = ({ closeModal }) => {
                 <span className="material-symbols-outlined text-xl">
                   schedule
                 </span>
-                <h3 className="font-bold tracking-wide uppercase text-sm">
+                <h3 className="font-bold tracking-wide uppercase text-sm text-accent">
                   Choose Time
                 </h3>
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 text-white">
                 <button className="px-5 py-3 rounded-lg bg-white/5 border border-white/10 text-sm font-medium hover:border-primary/50 transition-all flex-1 min-w-[120px] text-center">
                   09:00 AM
                 </button>
@@ -125,7 +125,7 @@ export const TestDriveModal = ({ closeModal }) => {
             </div>
             {/*Section: Preferences (Subtle Context)*/}
             <div className="space-y-4">
-              <div className="flex items-center gap-2 text-primary">
+              <div className="flex items-center gap-2 text-accent">
                 <span className="material-symbols-outlined text-xl">
                   settings_input_component
                 </span>
@@ -137,14 +137,14 @@ export const TestDriveModal = ({ closeModal }) => {
                 <label className="flex-1 cursor-pointer">
                   <input className="hidden peer" name="mode" type="radio" />
                   <div className="p-4 rounded-xl border border-white/10 bg-white/5 peer-checked:border-[#00C79F] peer-checked:bg-[#00C79F]/20 transition-all">
-                    <p className="font-bold text-sm">Guided</p>
+                    <p className="font-bold text-sm text-white">Guided</p>
                     <p className="text-xs text-zinc-500">With a specialist</p>
                   </div>
                 </label>
                 <label className="flex-1 cursor-pointer">
                   <input className="hidden peer" name="mode" type="radio" />
                   <div className="p-4 rounded-xl border border-white/10 bg-white/5 peer-checked:border-[#00C79F] peer-checked:bg-[#00C79F]/20 transition-all">
-                    <p className="font-bold text-sm">Solo</p>
+                    <p className="font-bold text-sm text-white">Solo</p>
                     <p className="text-xs text-zinc-500">Express experience</p>
                   </div>
                 </label>
