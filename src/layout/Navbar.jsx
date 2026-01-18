@@ -1,6 +1,4 @@
 import { NavLink, Link } from "react-router-dom";
-import { ModalControl } from "../components/modal/ModalControl";
-import { TestDriveModal } from "../components/modal/requestTest/TestDriveModal";
 
 export const Navbar = () => {
   const linkStyle = ({ isActive }) =>
