@@ -1,8 +1,12 @@
 import { useState } from "react";
 import { Layout } from "../layout/Layout";
-
+import { useLocation } from "react-router-dom";
 export const Reservation = () => {
   const [selectLocation, setSelectLocation] = useState(0);
+  const { state } = useLocation();
+  const vehicle = state?.vehicle;
+  let logistica = 10000;
+  const total = logistica + vehicle.precio;
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-6 py-12 lg:px-12 lg:py-16 ">
@@ -43,7 +47,7 @@ export const Reservation = () => {
                     RESERVED FOR YOU
                   </span>
                   <h3 className="serif-title text-2xl font-bold text-white">
-                    2024 Taycan Turbo S
+                    {vehicle.nombre_vehiculo}
                   </h3>
                 </div>
               </div>
@@ -53,13 +57,15 @@ export const Reservation = () => {
                     <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">
                       Exterior Color
                     </p>
-                    <p className="text-sm font-medium">Jet Black Metallic</p>
+                    <p className="text-sm font-medium text-white">
+                      Jet Black Metallic
+                    </p>
                   </div>
                   <div>
                     <p className="text-[10px] uppercase tracking-widest text-white/40 mb-1">
                       Interior Trim
                     </p>
-                    <p className="text-sm font-medium">
+                    <p className="text-sm font-medium text-white">
                       Executive Slate Leather
                     </p>
                   </div>
@@ -70,25 +76,21 @@ export const Reservation = () => {
                     <span className="text-white/60 text-sm">
                       Vehicle Base Price
                     </span>
-                    <span className="text-white font-medium">$185,000.00</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/60 text-sm">
-                      Custom Configuration
+                    <span className="text-white font-medium">
+                      ${vehicle.precio}
                     </span>
-                    <span className="text-white font-medium">$9,900.00</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-white/60 text-sm">
                       Logistics &amp; Handling
                     </span>
-                    <span className="text-white font-medium">$1,450.00</span>
+                    <span className="text-white font-medium">${logistica}</span>
                   </div>
                   <div className="flex justify-between items-center pt-2 border-t border-white/5">
                     <span className="text-white font-bold">
                       Total Vehicle Price
                     </span>
-                    <span className="text-white font-bold">$196,350.00</span>
+                    <span className="text-white font-bold">${total}</span>
                   </div>
                 </div>
                 <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 flex justify-between items-center">
@@ -134,13 +136,13 @@ export const Reservation = () => {
                   Contact Information
                 </h3>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-white">
                 <div className="space-y-2">
                   <label className="text-[11px] uppercase tracking-widest text-white/50 font-bold">
                     Full Legal Name
                   </label>
                   <input
-                    className="w-full bg-background-dark border border-white/10 rounded-lg px-4 py-3 text-sm form-input-focus transition-all"
+                    className="w-full bg-background-dark border border-white/10 rounded-lg px-4 py-3 text-sm form-input-focus transition-all "
                     placeholder="Johnathan Doe"
                     type="text"
                   />
