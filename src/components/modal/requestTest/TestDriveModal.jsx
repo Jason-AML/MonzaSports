@@ -1,4 +1,4 @@
-export const TestDriveModal = ({ closeModal }) => {
+export const TestDriveModal = ({ closeModal, data }) => {
   return (
     <>
       {/*Modal Overlay Container*/}
@@ -12,11 +12,9 @@ export const TestDriveModal = ({ closeModal }) => {
             </div>
             <div>
               <h1 className="text-4xl lg:text-5xl font-bold tracking-tight mb-2 text-accent">
-                Porsche Taycan
+                {data.nombre_vehiculo}
               </h1>
-              <p className="text-xl text-primary font-medium">
-                Turbo S All-Electric
-              </p>
+              <p className="text-xl text-primary font-medium">{data.modelo}</p>
             </div>
             <div className="rounded-lg overflow-hidden border border-white/5 aspect-[4/3] bg-zinc-900">
               <div
@@ -33,13 +31,17 @@ export const TestDriveModal = ({ closeModal }) => {
                 <p className="text-zinc-500 text-xs uppercase font-bold tracking-tighter">
                   Performance
                 </p>
-                <p className="text-white text-lg font-medium">0-60 in 2.6s</p>
+                <p className="text-white text-lg font-medium">
+                  0-100 in {data.aceleracion_0_100}s
+                </p>
               </div>
               <div className="p-4 rounded-lg bg-white/5">
                 <p className="text-zinc-500 text-xs uppercase font-bold tracking-tighter">
-                  Range
+                  Power
                 </p>
-                <p className="text-white text-lg font-medium">278 Miles</p>
+                <p className="text-white text-lg font-medium">
+                  {data.poder_hp} HP
+                </p>
               </div>
             </div>
           </div>
