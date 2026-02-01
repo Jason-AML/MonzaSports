@@ -35,7 +35,6 @@ export const Details = () => {
 
     fetchVehicle();
   }, [id, vehicles]);
-  console.log(vehicles);
   if (loading) return <p>Cargando...</p>;
   if (!vehicle) return <p>Vehículo no encontrado</p>;
   return (
