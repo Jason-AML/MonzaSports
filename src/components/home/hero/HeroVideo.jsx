@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import bgferrari from "../../../assets/ferrari.mp4";
 
 export const HeroVideo = () => {
@@ -25,9 +26,12 @@ export const HeroVideo = () => {
           motorcycles. Designed for those who refuse to follow.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="px-10 py-4 bg-[#00C79F] text-background-dark font-bold uppercase tracking-widest rounded-lg hover:bg-primary/90 transition-all cursor-pointer">
+          <Link
+            to="/collections"
+            className="px-10 py-4 bg-[#00C79F] text-background-dark font-bold uppercase tracking-widest rounded-lg hover:bg-primary/90 transition-all cursor-pointer"
+          >
             Explore Collection
-          </button>
+          </Link>
           <button className="px-10 py-4 border border-white/20 hover:border-primary/50 font-bold uppercase tracking-widest rounded-lg transition-all backdrop-blur-sm cursor-pointer">
             Our Legacy
           </button>
