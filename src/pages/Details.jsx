@@ -1,9 +1,43 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Layout } from "../layout/Layout";
 import { ModalControl } from "../components/modal/ModalControl";
 import { TestDriveModal } from "../components/modal/requestTest/TestDriveModal";
+import { Calculator } from "../components/financingCalculator/Calculator";
+import { useVehicle } from "../context/VehicleContext";
+import { useEffect, useState } from "react";
+import { getVehicleById } from "../service/vehicleService";
 
 export const Details = () => {
+  const { id } = useParams();
+  const { vehicles } = useVehicle();
+
+  const [vehicle, setVehicle] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const found = vehicles.find((v) => v.id === id);
+
+    if (found) {
+      setVehicle(found);
+      setLoading(false);
+      return;
+    }
+
+    const fetchVehicle = async () => {
+      try {
+        const data = await getVehicleById(id);
+        setVehicle(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVehicle();
+  }, [id, vehicles]);
+  console.log(vehicles);
+  if (loading) return <p>Cargando...</p>;
+  if (!vehicle) return <p>Vehículo no encontrado</p>;
   return (
     <>
       <Layout>
@@ -25,10 +59,10 @@ export const Details = () => {
                     <div className="absolute inset-0 bg-linear-to-t from-background-dark/60 to-transparent"></div>
                     <div className="absolute bottom-6 left-6 flex gap-2">
                       <span className="bg-accent text-white border border-primary/30 px-3 py-1 rounded text-xs font-bold uppercase tracking-widest backdrop-blur-md">
-                        Active Aero Engage
+                        {vehicle.modelo}
                       </span>
                       <span className="bg-white/10 text-white border border-white/20 px-3 py-1 rounded text-xs font-bold uppercase tracking-widest backdrop-blur-md">
-                        V12 Hybrid
+                        {vehicle.motor}
                       </span>
                     </div>
                   </div>
@@ -73,52 +107,52 @@ export const Details = () => {
                   </h3>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-1">
                     <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
-                      <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
+                      <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">
                         Engine
                       </p>
-                      <p className="text-white text-2xl font-bold">6.5L V12</p>
-                      <p className="text-accent text-sm mt-1">
-                        Natural Aspirated
+                      <p className="text-white text-2xl font-bold">
+                        {vehicle.motor}
                       </p>
                     </div>
                     <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
-                      <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
+                      <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">
                         Power
                       </p>
-                      <p className="text-white text-2xl font-bold">785 HP</p>
-                      <p className="text-accent text-sm mt-1">At 8,500 RPM</p>
+                      <p className="text-white text-2xl font-bold">
+                        {vehicle.poder_hp} HP
+                      </p>
                     </div>
                     <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
-                      <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
+                      <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">
                         0-100 KM/H
                       </p>
-                      <p className="text-white text-2xl font-bold">2.8 SEC</p>
-                      <p className="text-accent text-sm mt-1">Launch Control</p>
+                      <p className="text-white text-2xl font-bold">
+                        {vehicle.aceleracion_0_100} SEC
+                      </p>
                     </div>
                     <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
-                      <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
+                      <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">
                         Top Speed
                       </p>
-                      <p className="text-white text-2xl font-bold">350 KM/H</p>
-                      <p className="text-accent text-sm mt-1">
-                        Electonically Limited
+                      <p className="text-white text-2xl font-bold">
+                        {vehicle.velocidad_maxima} KM/H
                       </p>
                     </div>
                     <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
-                      <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
+                      <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">
                         Torque
                       </p>
-                      <p className="text-white text-2xl font-bold">720 NM</p>
-                      <p className="text-accent text-sm mt-1">
-                        Peak @ 6,750 RPM
+                      <p className="text-white text-2xl font-bold">
+                        {vehicle.torque_nm} NM
                       </p>
                     </div>
                     <div className="bg-[#1C1F26] p-8 border border-[#1C1F26] group hover:border-primary/50 transition-colors">
-                      <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mb-2">
+                      <p className="text-accent text-xs font-bold uppercase tracking-widest mb-2">
                         Weight
                       </p>
-                      <p className="text-white text-2xl font-bold">1,525 KG</p>
-                      <p className="text-accent text-sm mt-1">Curb Mass</p>
+                      <p className="text-white text-2xl font-bold">
+                        {vehicle.peso_kg} KG
+                      </p>
                     </div>
                   </div>
                 </section>
@@ -185,26 +219,27 @@ export const Details = () => {
                     <div className="relative z-10">
                       <div className="flex justify-between items-start mb-2">
                         <h1 className="text-white text-4xl font-black tracking-tighter uppercase leading-none">
-                          AERO-X GT
+                          {vehicle.nombre_vehiculo}
                         </h1>
                         <span className="bg-accent text-background-dark text-[10px] font-bold px-2 py-0.5 rounded uppercase">
                           In Stock
                         </span>
                       </div>
                       <p className="text-slate-400 text-sm mb-6 uppercase tracking-widest">
-                        Model Year 2024 • Limited Series
+                        Model Year {vehicle.anio}
                       </p>
                       <div className="flex items-baseline gap-2 mb-8">
                         <span className="text-white text-5xl font-bold">
-                          $245,000
+                          ${vehicle.precio}
                         </span>
                         <span className="text-slate-500 text-sm uppercase">
-                          MSRP
+                          Dollars
                         </span>
                       </div>
                       <div className="space-y-4 flex flex-col justify-center items-center">
                         <Link
-                          to="/reservation"
+                          to={`/reservation/${vehicle.id}`}
+                          state={{ vehicle }}
                           className="w-full bg-accent text-background-dark h-14 rounded-lg font-bold text-base uppercase tracking-widest hover:brightness-110 shadow-[0_0_20px_rgba(0,199,159,0.3)] flex items-center justify-center gap-2"
                         >
                           <span className="material-symbols-outlined">
@@ -222,63 +257,7 @@ export const Details = () => {
                     </div>
                   </div>
                   {/*Financing Calculator Panel*/}
-                  <div className="bg-panel-dark/40 border border-border-dark rounded-xl p-6 backdrop-blur-sm">
-                    <h4 className="text-white text-sm font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
-                      <span className="material-symbols-outlined text-accent text-lg">
-                        calculate
-                      </span>
-                      Financing Estimator
-                    </h4>
-                    <div className="space-y-4">
-                      <div>
-                        <label className="text-[10px] text-slate-500 uppercase font-bold mb-1 block">
-                          Down Payment
-                        </label>
-                        <div className="relative">
-                          <span className="absolute left-3 inset-y-0 flex items-center text-black pointer-events-none">
-                            $
-                          </span>
-                          <input
-                            className="w-full h-10 bg-background-dark/50 border border-border-dark rounded
-               focus:ring-primary focus:border-primary text-sm pl-7 text-black"
-                            type="text"
-                            value="50,000"
-                          />
-                        </div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="text-[10px] text-slate-500 uppercase font-bold mb-1 block">
-                            Term (Months)
-                          </label>
-                          <select className="w-full bg-[#0A0A0A] border-border-dark rounded focus:ring-primary focus:border-primary text-sm text-white">
-                            <option>48</option>
-                            <option selected="">60</option>
-                            <option>72</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label className="text-[10px] text-slate-500 uppercase font-bold mb-1 block">
-                            Est. APR
-                          </label>
-                          <input
-                            className="w-full bg-background-dark/50 border-border-dark rounded focus:ring-primary focus:border-primary text-sm text-black text-center"
-                            type="text"
-                            value="4.9%"
-                          />
-                        </div>
-                      </div>
-                      <div className="pt-4 mt-4 border-t border-border-dark flex justify-between items-center">
-                        <span className="text-slate-400 text-xs uppercase font-bold">
-                          Estimated Monthly
-                        </span>
-                        <span className="text-white text-xl font-bold">
-                          $3,680
-                          <span className="text-xs text-slate-500">/mo</span>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  <Calculator price={vehicle.precio} />
                   {/*Dealer Info*/}
                   <div className="p-6 border border-border-dark rounded-xl flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-primary">
@@ -288,10 +267,10 @@ export const Details = () => {
                     </div>
                     <div>
                       <p className="text-white text-sm font-bold">
-                        Luxe Motors flagship
+                        {vehicle.fabricas.nombre_planta}
                       </p>
                       <p className="text-slate-500 text-xs">
-                        San Francisco, CA
+                        {vehicle.fabricas.ciudad}, {vehicle.fabricas.pais}
                       </p>
                     </div>
                     <button className="ml-auto text-accent hover:text-white transition-colors">
@@ -300,7 +279,7 @@ export const Details = () => {
                   </div>
                   <ModalControl action="Test Drive">
                     {({ closeModal }) => (
-                      <TestDriveModal closeModal={closeModal} />
+                      <TestDriveModal closeModal={closeModal} data={vehicle} />
                     )}
                   </ModalControl>
                 </div>
