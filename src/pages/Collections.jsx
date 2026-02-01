@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { Layout } from "../layout/Layout";
-import { Link } from "react-router-dom";
+
+import { Card } from "../components/collection/Card";
+import { useVehicle } from "../context/VehicleContext";
 
 export const Collections = () => {
   const [price, setPrice] = useState(500000);
   const [active, setActive] = useState("Coupe");
   const styles = ["Coupe", "Sedan", "SUV", "Spider"];
+  const { vehicles, loading } = useVehicle();
   return (
     <>
       <Layout>
@@ -133,218 +136,9 @@ export const Collections = () => {
               </aside>
               <div className="grow">
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                  <div className=" group bg-[#161616] rounded-2xl">
-                    <div className="relative aspect-16/10 overflow-hidden">
-                      <img
-                        alt="Apex GT-S"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUPkaWhL28AXDlUqiGfaAnR1B7j0ZlL_wZHqNH06TSuKAEOxhbAmWfhpCqEALucQXLv3mQ1amzSPwpx-e4JhBqshDiSXsN9Amb6k0MAVTJv8IydERw1aLXkIWfisR4lGqZK7115PRwqkiRUvxxfqDnznCSqRd1FWpZzk_nKh9xVCajAXiFa9iP_mgmePRq9cYUiQB_FENHBw3d9e16kxj0RCbaMI1zU4LofeEomLVaDY7yROohtZZVLaOvhz2N-GKQl7DpcC7Mm1c"
-                      />
-                      <div className="absolute top-4 left-4 px-3 py-1 bg-[#00C79F] text-background-dark text-[10px] font-bold uppercase tracking-widest rounded">
-                        In Stock
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-4 tracking-tight">
-                        2024 Apex GT-S
-                      </h3>
-                      <div className="grid grid-cols-3 gap-2 mb-6">
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-accent text-lg">
-                            bolt
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            820 HP
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-accent text-lg">
-                            timer
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            2.4s
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-accent text-lg">
-                            settings_input_component
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            AWD
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between border-t border-white/5 pt-6">
-                        <span className="text-2xl font-bold tracking-tighter">
-                          $289,000
-                        </span>
-                        <button className="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all">
-                          <Link
-                            className="material-symbols-outlined"
-                            to="/details"
-                          >
-                            arrow_forward
-                          </Link>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group bg-[#161616] rounded-2xl">
-                    <div className="relative aspect-16/10 overflow-hidden">
-                      <img
-                        alt="Apex Horizon"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA9xPUuGD7j4gFgwIwtNaLVi5hQjH4_mYMDMJucx4EgDf0DCLUXGBnMoZo24CvNoLM-sDv3AjNzd4R9vwDtWTAwkBfs5M62G1WH0a4w2W3ogqJYkBPq7uv5pKUo_ur8kZoky1aTADnK5suBNk8oCyYFpdoUO05KCtyd7y19rmKoepZB_ysBej52NaTAzS3aYLNQ9Z_4mTU5qJVEHnzWmPblx52wFU5lJLDaR_bDOVA3msHGhl6Xym0mvTgV2jKr1r70lN6FjlU4BUA"
-                      />
-                      <div className="absolute top-4 left-4 px-3 py-1 bg-white/10 text-white text-[10px] font-bold uppercase tracking-widest rounded">
-                        Coming Soon
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-4 tracking-tight">
-                        2024 Apex Horizon SE
-                      </h3>
-                      <div className="grid grid-cols-3 gap-2 mb-6">
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-primary text-lg">
-                            bolt
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            650 HP
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-primary text-lg">
-                            timer
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            3.1s
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-primary text-lg">
-                            settings_input_component
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            DCT
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between border-t border-white/5 pt-6">
-                        <span className="text-2xl font-bold tracking-tighter">
-                          $195,500
-                        </span>
-                        <button className="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all">
-                          <span className="material-symbols-outlined">
-                            arrow_forward
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group bg-[#161616] rounded-2xl">
-                    <div className="relative aspect-16/10 overflow-hidden">
-                      <img
-                        alt="Apex Volt"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsQMkJakCvwFag2cZ9xNRIdkjA_w0-Zm3DN11jCWcfW6SMyI_s1MTaJef5srezbYBtva7cvHgNmgE1hgVNv9wiFBu6Cai35H2LWqbLfhftLP-OFL5OK7c4Q3ePtz9XE9Q3sDHXlX-cEyVtOe8kNX1vM8Mris2kuI9ffVH9AX7n0-3mIyBQ1uNKoZE8nA-ovtThHk9-4yCNV7KyOwlCUsIV7fV6PjoTVjAgy6REtzNUthnoFkvynDZM2YnoIpTauw2MPp4c1xi55Nc"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-4 tracking-tight">
-                        2025 Apex Volt GT
-                      </h3>
-                      <div className="grid grid-cols-3 gap-2 mb-6">
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-primary text-lg">
-                            electric_bolt
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            EV
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-primary text-lg">
-                            timer
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            2.1s
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-primary text-lg">
-                            settings_input_component
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            4WD
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between border-t border-white/5 pt-6">
-                        <span className="text-2xl font-bold tracking-tighter">
-                          $312,000
-                        </span>
-                        <button className="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all">
-                          <span className="material-symbols-outlined">
-                            arrow_forward
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group bg-[#161616] rounded-2xl">
-                    <div className="relative aspect-16/10 overflow-hidden">
-                      <img
-                        alt="Apex V12 Heritage"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXFcpBK9CYAD9FqERAnPOMCTbImhnbo3FHYJNW9s6E57zkcTM-6FFs9LjrUe2h566yiLruJqYMJReax9WqDFQAyVf0IH3M30ROvKqzSCIlzW6uhAFxaqxYadFlNt4s4D8dDB2c1B6W3jBO9CSgcIw2IwXrMN6wyfpQj_O_n0DCncCDHj5HbIaky2sg5zzmvi5yVkgGGVxnQqez5CQPnqet4sDnnJw3eaPc5c_FwuDcVqaacnLxv4i0qWtvsTHQjiyjsIoQCwLdmYg"
-                      />
-                      <div className="absolute top-4 left-4 px-3 py-1 bg-orange-500 text-white text-[10px] font-bold uppercase tracking-widest rounded">
-                        Certified
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold mb-4 tracking-tight">
-                        2022 Apex Heritage V12
-                      </h3>
-                      <div className="grid grid-cols-3 gap-2 mb-6">
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-primary text-lg">
-                            bolt
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            780 HP
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-primary text-lg">
-                            timer
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            2.9s
-                          </span>
-                        </div>
-                        <div className="flex flex-col items-center gap-1 p-2 bg-white/5 rounded-lg">
-                          <span className="material-symbols-outlined text-primary text-lg">
-                            settings_input_component
-                          </span>
-                          <span className="text-[10px] text-gray-500 uppercase font-bold">
-                            MAN
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex items-center justify-between border-t border-white/5 pt-6">
-                        <span className="text-2xl font-bold tracking-tighter">
-                          $425,000
-                        </span>
-                        <button className="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all">
-                          <span className="material-symbols-outlined">
-                            arrow_forward
-                          </span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  {vehicles.map((vehicle) => (
+                    <Card key={vehicle.id} data={vehicle} />
+                  ))}
                 </div>
                 <div className="mt-12 flex justify-center items-center gap-2">
                   <button className="size-10 flex items-center justify-center rounded-lg border border-white/10 hover:border-primary transition-colors">
