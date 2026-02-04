@@ -6,33 +6,34 @@ import {
 
 export const useAuthUser = () => {
   const signUpNewUser = async (email, password) => {
-    try {
-      const { data, error } = await registerService(email, password);
+    const { data, error } = await registerService(email, password);
 
-      if (error) throw error;
-
-      if (data.user) {
-        return {
-          success: true,
-          message: "Registro exitoso!",
-        };
-      }
-
-      return { error: "El registro no se completó" };
-    } catch (err) {
-      console.error("Error al registrar:", err.message);
-      return { error: err.message };
+    if (error) {
+      throw new Error(error.message);
     }
+
+    if (
+      (data.user && !data.user.identities) ||
+      data.user.identities.length === 0
+    ) {
+      throw new Error("Este correo ya está registrado");
+    }
+
+    if (data.user) {
+      return data;
+    }
+
+    throw new Error("El registro no se completó");
   };
+
   const signUpUser = async (email, password) => {
     const { error } = await loginService(email, password);
 
     if (error) {
-      console.error("Error al iniciar sesión:", error.message);
-      alert(error.message);
-      return;
+      throw new Error(error.message);
     }
   };
+
   const logoutUser = async () => {
     await logoutService();
   };

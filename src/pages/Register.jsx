@@ -22,9 +22,20 @@ export const Register = () => {
     try {
       await signUpNewUser(email, password);
       toast.success("Usuario registrado correctamente");
-      navigate("/");
+      navigate("/login");
     } catch (error) {
-      toast.error(error.message || "Error al registrar usuario");
+      console.error("Error:", error.message);
+
+      if (
+        error.message.includes("already registered") ||
+        error.message.includes("User already registered")
+      ) {
+        toast.error("Este correo ya está registrado");
+      } else if (error.message.includes("Password should be at least")) {
+        toast.error("La contraseña debe tener al menos 6 caracteres");
+      } else {
+        toast.error(error.message || "Error al registrar usuario");
+      }
     } finally {
       setLoading(false);
     }
