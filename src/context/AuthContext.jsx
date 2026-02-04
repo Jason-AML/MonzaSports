@@ -27,6 +27,7 @@ export const AuthContextProvider = ({ children }) => {
         });
       } catch (err) {
         console.error("Error en AuthContext:", err);
+      } finally {
         setLoadingAuth(false);
       }
     };
