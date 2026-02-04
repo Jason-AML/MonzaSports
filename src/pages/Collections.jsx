@@ -1,14 +1,34 @@
 import { useState } from "react";
 import { Layout } from "../layout/Layout";
-
 import { Card } from "../components/collection/Card";
 import { useVehicle } from "../context/VehicleContext";
 
 export const Collections = () => {
-  const [price, setPrice] = useState(500000);
-  const [active, setActive] = useState("Coupe");
-  const styles = ["Coupe", "Sedan", "SUV", "Spider"];
+  const [price, setPrice] = useState(100000);
+  const [active, setActive] = useState("");
+  const styles = ["Toyota", "BMW", "Audi", "Ford"];
   const { vehicles, loading } = useVehicle();
+  const HandleClearFilter = () => {
+    setActive("");
+    setPrice(100000);
+  };
+
+  const getFilteredVehicles = () => {
+    if (!vehicles) return [];
+    let filtered = vehicles;
+    if (active) {
+      filtered = filtered.filter(
+        (vehicle) =>
+          vehicle.bodyStyle === active ||
+          vehicle.fabricas.fabricante === active,
+      );
+    }
+    filtered = filtered.filter(
+      (vehicle) => vehicle.precio <= price || vehicle.price <= price,
+    );
+    return filtered;
+  };
+  const filteredVehicles = getFilteredVehicles();
   return (
     <>
       <Layout>
@@ -86,6 +106,7 @@ export const Collections = () => {
                       {styles.map((item) => (
                         <button
                           key={item}
+                          value={item}
                           className={`btn transition-all ${
                             active === item
                               ? "bg-[#00C79F] text-black"
@@ -105,16 +126,16 @@ export const Collections = () => {
                     <div className="px-2">
                       <input
                         type="range"
-                        min={50000}
-                        max={1000000}
+                        min={10000}
+                        max={100000}
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                         className="range range-accent"
                       />
                       <div className="flex justify-between mt-3 text-[10px] text-gray-500 uppercase font-bold tracking-tighter">
-                        <span>$50k</span>
+                        <span>$10k</span>
                         <span>{price}</span>
-                        <span>$1M+</span>
+                        <span>$100k</span>
                       </div>
                     </div>
                   </div>
@@ -129,16 +150,29 @@ export const Collections = () => {
                       <option>2022</option>
                     </select>
                   </div>
-                  <button className="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-colors">
+                  <button
+                    onClick={HandleClearFilter}
+                    className="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-colors cursor-pointer"
+                  >
                     Clear Filters
                   </button>
                 </div>
               </aside>
               <div className="grow">
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {vehicles.map((vehicle) => (
-                    <Card key={vehicle.id} data={vehicle} />
-                  ))}
+                  {loading ? (
+                    <p>Cargando...</p>
+                  ) : filteredVehicles.length > 0 ? (
+                    <>
+                      {filteredVehicles.map((vehicle) => (
+                        <Card key={vehicle.id} data={vehicle} />
+                      ))}
+                    </>
+                  ) : (
+                    <p className="col-span-full text-center text-gray-500">
+                      No vehicles found matching your filters
+                    </p>
+                  )}
                 </div>
                 <div className="mt-12 flex justify-center items-center gap-2">
                   <button className="size-10 flex items-center justify-center rounded-lg border border-white/10 hover:border-primary transition-colors">
