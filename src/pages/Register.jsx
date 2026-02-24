@@ -53,7 +53,7 @@ export const Register = () => {
                 "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAUPkaWhL28AXDlUqiGfaAnR1B7j0ZlL_wZHqNH06TSuKAEOxhbAmWfhpCqEALucQXLv3mQ1amzSPwpx-e4JhBqshDiSXsN9Amb6k0MAVTJv8IydERw1aLXkIWfisR4lGqZK7115PRwqkiRUvxxfqDnznCSqRd1FWpZzk_nKh9xVCajAXiFa9iP_mgmePRq9cYUiQB_FENHBw3d9e16kxj0RCbaMI1zU4LofeEomLVaDY7yROohtZZVLaOvhz2N-GKQl7DpcC7Mm1c')",
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-apex-dark/80 via-apex-dark/20 to-transparent"></div>
+            <div className="absolute inset-0 bg-linear-to-t from-apex-dark/80 via-apex-dark/20 to-transparent"></div>
           </div>
 
           <div className="relative z-10 p-16 flex flex-col justify-between w-full h-full">
@@ -136,9 +136,14 @@ export const Register = () => {
                 Register
               </button>
             </form>
-            <Link to="/login" className="w-100 hover:text-accent">
-              Ya tienes cuenta?
-            </Link>
+            <div className=" flex justify-between">
+              <Link to="/register" className=" hover:text-accent pt-5">
+                No tienes cuenta?
+              </Link>
+              <Link to="/" className=" hover:text-accent pt-5">
+                Volver al inicio
+              </Link>
+            </div>
           </div>
         </section>
       </main>

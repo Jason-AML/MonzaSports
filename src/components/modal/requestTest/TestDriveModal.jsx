@@ -3,7 +3,7 @@ export const TestDriveModal = ({ closeModal, data }) => {
     <>
       {/*Modal Overlay Container*/}
       {/*Main Modal Window*/}
-      <div className="glass-panel bg-[#191B1F] w-full max-w-6xl rounded-xl shadow-2xl overflow-hidden flex flex-col md:flex-row min-h-175">
+      <div className="glass-panel bg-[#191B1F] w-full max-w-6xl rounded-xl shadow-2xl overflow-scroll flex flex-col md:flex-row min-h-175">
         {/*Left Column: Vehicle Summary*/}
         <div className="w-full md:w-5/12 p-8 lg:p-12 flex flex-col justify-between border-b md:border-b-0 md:border-r border-white/10 bg-black/20">
           <div className="space-y-6">
@@ -162,7 +162,7 @@ export const TestDriveModal = ({ closeModal, data }) => {
               <span className="material-symbols-outlined">close</span>
               Cancel
             </button>
-            <button className="group cursor-pointer flex items-center gap-3 bg-[#00C79F] hover:bg-primary/90 text-black px-10 py-4 rounded-lg font-bold transition-all shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95">
+            <button className="group cursor-pointer flex items-center gap-3 bg-[#00C79F] hover:bg-primary/90 text-black px-10 py-4 rounded-lg font-bold transition-all shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-95 w-35 sm:w-auto">
               Confirm Booking
               <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">
                 arrow_forward
