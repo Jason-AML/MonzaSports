@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuthUser } from "../hooks/useAuthUser";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const Login = () => {
   const { signUpUser } = useAuthUser();
@@ -15,6 +16,7 @@ export const Login = () => {
     try {
       await signUpUser(email, password);
       setLoading(false);
+      toast.success("Bienvenido");
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -116,9 +118,14 @@ export const Login = () => {
                 Login
               </button>
             </form>
-            <Link to="/register" className="w-100 hover:text-accent pt-5">
-              No tienes cuenta?
-            </Link>
+            <div className=" flex justify-between">
+              <Link to="/register" className=" hover:text-accent pt-5">
+                No tienes cuenta?
+              </Link>
+              <Link to="/" className=" hover:text-accent pt-5">
+                Volver al inicio
+              </Link>
+            </div>
           </div>
         </section>
       </main>
