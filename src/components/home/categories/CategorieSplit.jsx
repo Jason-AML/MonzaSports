@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export const CategorieSplit = () => {
   return (
     <section className="flex flex-col md:flex-row h-auto md:h-[80vh] w-full border-y border-white/10">
@@ -21,7 +23,11 @@ export const CategorieSplit = () => {
             From grand tourers to track-ready legends. Redefining what it means
             to drive.
           </p>
-          <a className="flex items-center gap-4 group/btn" href="#">
+          <Link
+            to="/collections"
+            className="flex items-center gap-4 group/btn"
+            href="#"
+          >
             <span className="text-sm font-bold uppercase tracking-widest">
               Browse Cars
             </span>
@@ -30,7 +36,7 @@ export const CategorieSplit = () => {
                 arrow_forward
               </span>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
       <div className="relative group flex-1 overflow-hidden split-card">

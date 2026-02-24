@@ -50,9 +50,9 @@ export const Details = () => {
                   <div className="relative group aspect-video w-full rounded-xl overflow-hidden bg-panel-dark border border-border-dark">
                     <div
                       className="absolute inset-0 bg-center bg-no-repeat bg-cover"
-                      data-alt="Sleek aerodynamic silver high-end sports car on mountain road"
+                      data-alt={vehicle.nombre_vehiculo}
                       style={{
-                        backgroundImage: `url("https://lh3.googleusercontent.com/aida-public/AB6AXuD9YgSso43M2a3CrWPBhGWL5Me22X4g_9BmRZJGgrhcbhcC7PiEkfi8khCciH8kEQNXs-hYq9xp8KjEiQqHRGKG2AjeELOL4n3QRfCITkD_Abvgmdahip0_Th8GayLjJlOYV5BUlSmXUeFs-eqJa-fNaVxKN_R_7S5uB0V4CXSYLHp8ntZRkuGP85kA6kCPk-wYEU3BEPtrCasrMoMtg6pnLlEL2lFRcUjKuZYmL-8s4WSeLyytOEnXth_Zclzq5hP69FrFr86VSw0")`,
+                        backgroundImage: `url(${vehicle.url_img})`,
                       }}
                     ></div>
                     <div className="absolute inset-0 bg-linear-to-t from-background-dark/60 to-transparent"></div>
