@@ -137,8 +137,8 @@ export const Register = () => {
               </button>
             </form>
             <div className=" flex justify-between">
-              <Link to="/register" className=" hover:text-accent pt-5">
-                No tienes cuenta?
+              <Link to="/login" className=" hover:text-accent pt-5">
+                tienes cuenta?
               </Link>
               <Link to="/" className=" hover:text-accent pt-5">
                 Volver al inicio
