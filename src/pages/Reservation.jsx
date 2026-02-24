@@ -1,15 +1,13 @@
-import { useState } from "react";
 import { Layout } from "../layout/Layout";
 import { useLocation } from "react-router-dom";
 export const Reservation = () => {
-  const [selectLocation, setSelectLocation] = useState(0);
   const { state } = useLocation();
   const vehicle = state?.vehicle;
   let logistica = 10000;
   const total = logistica + vehicle.precio;
   return (
     <Layout>
-      <div className="max-w-7xl mx-auto px-6 py-12 lg:px-12 lg:py-16 ">
+      <div className="max-w-7xl mx-auto px-6 py-20 lg:px-12 lg:py-16 ">
         {/*Page Heading Component*/}
         <div className="mb-12">
           <div className="flex items-center gap-2 mb-2">
