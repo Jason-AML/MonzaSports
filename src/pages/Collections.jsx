@@ -24,7 +24,7 @@ export const Collections = () => {
       );
     }
     filtered = filtered.filter(
-      (vehicle) => vehicle.precio <= price || vehicle.price <= price,
+      (vehicle) => vehicle.precio <= price || vehicle.precio <= price,
     );
     return filtered;
   };
@@ -65,41 +65,7 @@ export const Collections = () => {
               <aside className="w-full lg:w-72 space-y-8 shrink-0">
                 <div className="space-y-6">
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-4">
-                      Brand
-                    </h4>
-                    <div className="space-y-2">
-                      <label className="flex items-center gap-3 cursor-pointer group">
-                        <input
-                          className="rounded border-white/10 bg-white/5 text-primary focus:ring-primary/20"
-                          type="checkbox"
-                        />
-                        <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
-                          Apex Series
-                        </span>
-                      </label>
-                      <label className="flex items-center gap-3 cursor-pointer group">
-                        <input
-                          className="rounded border-white/10 bg-white/5 text-primary focus:ring-primary/20"
-                          type="checkbox"
-                        />
-                        <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
-                          Zenith Motors
-                        </span>
-                      </label>
-                      <label className="flex items-center gap-3 cursor-pointer group">
-                        <input
-                          className="rounded border-white/10 bg-white/5 text-primary focus:ring-primary/20"
-                          type="checkbox"
-                        />
-                        <span className="text-sm text-gray-300 group-hover:text-white transition-colors">
-                          Volt Heritage
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-4">
+                    <h4 className="text-xs font-bold uppercase tracking-widest text-accent mb-4">
                       Body Style
                     </h4>
                     <div className="grid grid-cols-2 gap-2">
@@ -120,7 +86,7 @@ export const Collections = () => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-4">
+                    <h4 className="text-xs font-bold uppercase tracking-widest text-accent mb-4">
                       Price Range
                     </h4>
                     <div className="px-2">
@@ -140,7 +106,7 @@ export const Collections = () => {
                     </div>
                   </div>
                   <div>
-                    <h4 className="text-xs font-bold uppercase tracking-widest text-primary mb-4">
+                    <h4 className="text-xs font-bold uppercase tracking-widest text-accent mb-4">
                       Year
                     </h4>
                     <select className="w-full bg-[#0A0A0A] border-white/10 rounded-lg text-sm px-4 py-2.5 focus:ring-primary">
