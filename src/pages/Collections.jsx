@@ -23,9 +23,7 @@ export const Collections = () => {
           vehicle.fabricas.fabricante === active,
       );
     }
-    filtered = filtered.filter(
-      (vehicle) => vehicle.precio <= price || vehicle.precio <= price,
-    );
+    filtered = filtered.filter((vehicle) => vehicle.precio <= price);
     return filtered;
   };
   const filteredVehicles = getFilteredVehicles();
