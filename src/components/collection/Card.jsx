@@ -5,9 +5,10 @@ export const Card = ({ data }) => {
     <div className=" group bg-[#161616] rounded-2xl">
       <div className="relative aspect-16/10 overflow-hidden">
         <img
-          alt="Apex GT-S"
+          alt={data.nombre_vehiculo}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           src={data.url_img}
+          loading="lazy"
         />
         <div className="absolute top-4 left-4 px-3 py-1 bg-[#00C79F] text-background-dark text-[10px] font-bold uppercase tracking-widest rounded">
           In Stock
