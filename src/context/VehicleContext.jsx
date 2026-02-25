@@ -1,5 +1,9 @@
 import { useCallback, useContext, useEffect, useState } from "react";
-import { getMarcas, getVehicle } from "../service/vehicleService";
+import {
+  createTestDrive,
+  getMarcas,
+  getVehicle,
+} from "../service/vehicleService";
 import { createContext } from "react";
 import { Outlet } from "react-router-dom";
 
@@ -14,6 +18,7 @@ export const VehicleContextProvider = ({ children }) => {
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [marcas, setMarcas] = useState([]);
+  const [adding, setAdding] = useState(null);
   const [loadingCategory, setLoadingCategory] = useState(false);
   const getCar = useCallback(async () => {
     setLoading(true);
@@ -39,6 +44,16 @@ export const VehicleContextProvider = ({ children }) => {
       setLoading(false);
     }
   }, []);
+  const insertTestDrive = async (formTestDrive) => {
+    setAdding(true);
+    try {
+      await createTestDrive(formTestDrive);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setAdding(false);
+    }
+  };
   useEffect(() => {
     getCar();
     getCategory();
@@ -50,6 +65,7 @@ export const VehicleContextProvider = ({ children }) => {
         loading,
         loadingCategory,
         marcas,
+        insertTestDrive,
       }}
     >
       {children ?? <Outlet />}
