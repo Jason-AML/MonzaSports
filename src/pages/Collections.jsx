@@ -1,25 +1,17 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Layout } from "../layout/Layout";
 import { Card } from "../components/collection/Card";
 import { useVehicle } from "../context/VehicleContext";
-import { getMarcas } from "../service/vehicleService";
 
 export const Collections = () => {
   const [price, setPrice] = useState(350000);
   const [active, setActive] = useState("");
-  const [tabs, setTabs] = useState([]);
-  const { vehicles, loading } = useVehicle();
+
+  const { vehicles, loading, marcas } = useVehicle();
   const handleClearFilter = () => {
     setActive("");
     setPrice(350000);
   };
-  useEffect(() => {
-    const fetchMarcas = async () => {
-      const data = await getMarcas();
-      setTabs(data);
-    };
-    fetchMarcas();
-  }, []);
 
   const filteredVehicles = useMemo(() => {
     if (!vehicles) return [];
@@ -83,7 +75,7 @@ export const Collections = () => {
                       >
                         All
                       </button>
-                      {tabs.map((item) => (
+                      {marcas.map((item) => (
                         <button
                           key={item.id}
                           value={item.fabricante}

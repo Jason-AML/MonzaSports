@@ -40,3 +40,24 @@ export const getMarcas = async () => {
   }
   return data;
 };
+
+export const createTestDrive = async (formTestDrive) => {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const { data, error } = await supabase
+    .from("test_drive")
+    .insert({
+      id_user: user.id,
+      id_vehicle: formTestDrive.id_vehicle,
+      fecha_asignada: formTestDrive.date,
+      hora_asignada: formTestDrive.time,
+      experiencia: formTestDrive.experience,
+    })
+    .select();
+  if (error) {
+    console.log("Error al crear el test Drive", error);
+    throw error;
+  }
+  return data;
+};
