@@ -1,32 +1,38 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Layout } from "../layout/Layout";
 import { Card } from "../components/collection/Card";
 import { useVehicle } from "../context/VehicleContext";
+import { getMarcas } from "../service/vehicleService";
 
 export const Collections = () => {
-  const [price, setPrice] = useState(100000);
+  const [price, setPrice] = useState(350000);
   const [active, setActive] = useState("");
-  const styles = ["Toyota", "BMW", "Audi", "Ford"];
+  const [tabs, setTabs] = useState([]);
   const { vehicles, loading } = useVehicle();
-  const HandleClearFilter = () => {
+  const handleClearFilter = () => {
     setActive("");
-    setPrice(100000);
+    setPrice(350000);
   };
+  useEffect(() => {
+    const fetchMarcas = async () => {
+      const data = await getMarcas();
+      setTabs(data);
+    };
+    fetchMarcas();
+  }, []);
 
-  const getFilteredVehicles = () => {
+  const filteredVehicles = useMemo(() => {
     if (!vehicles) return [];
     let filtered = vehicles;
+
     if (active) {
       filtered = filtered.filter(
-        (vehicle) =>
-          vehicle.bodyStyle === active ||
-          vehicle.fabricas.fabricante === active,
+        (vehicle) => vehicle.fabricas?.fabricante === active,
       );
     }
-    filtered = filtered.filter((vehicle) => vehicle.precio <= price);
-    return filtered;
-  };
-  const filteredVehicles = getFilteredVehicles();
+
+    return filtered.filter((vehicle) => vehicle.precio <= price);
+  }, [vehicles, active, price]);
   return (
     <>
       <Layout>
@@ -67,18 +73,28 @@ export const Collections = () => {
                       Body Style
                     </h4>
                     <div className="grid grid-cols-2 gap-2">
-                      {styles.map((item) => (
+                      <button
+                        className={`btn transition-all ${
+                          active === ""
+                            ? "bg-[#00C79F] text-black"
+                            : "btn-ghost"
+                        }`}
+                        onClick={() => setActive("")}
+                      >
+                        All
+                      </button>
+                      {tabs.map((item) => (
                         <button
-                          key={item}
-                          value={item}
+                          key={item.id}
+                          value={item.fabricante}
                           className={`btn transition-all ${
-                            active === item
+                            active === item.fabricante
                               ? "bg-[#00C79F] text-black"
                               : "btn-ghost"
                           }`}
-                          onClick={() => setActive(item)}
+                          onClick={() => setActive(item.fabricante)}
                         >
-                          {item}
+                          {item.fabricante}
                         </button>
                       ))}
                     </div>
@@ -91,7 +107,7 @@ export const Collections = () => {
                       <input
                         type="range"
                         min={10000}
-                        max={100000}
+                        max={350000}
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
                         className="range range-accent"
@@ -99,7 +115,7 @@ export const Collections = () => {
                       <div className="flex justify-between mt-3 text-[10px] text-gray-500 uppercase font-bold tracking-tighter">
                         <span>$10k</span>
                         <span>{price}</span>
-                        <span>$100k</span>
+                        <span>$350k</span>
                       </div>
                     </div>
                   </div>
@@ -115,7 +131,7 @@ export const Collections = () => {
                     </select>
                   </div>
                   <button
-                    onClick={HandleClearFilter}
+                    onClick={handleClearFilter}
                     className="w-full py-3 bg-white/5 border border-white/10 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-colors cursor-pointer"
                   >
                     Clear Filters
