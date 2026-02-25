@@ -8,6 +8,7 @@ export const HeroVideo = () => {
         {/*Using a high-quality placeholder image representing the video background*/}
         <video
           className="w-full h-full object-cover scale-105"
+          preload="none"
           autoPlay
           loop
           muted
