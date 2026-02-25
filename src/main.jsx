@@ -4,14 +4,14 @@ import App from "./App";
 import "./index.css";
 import "cally";
 import "react-toastify/dist/ReactToastify.css";
+import "@fontsource/space-grotesk";
+import "material-symbols/outlined.css";
 import { AuthContextProvider } from "./context/AuthContext";
-import { VehicleContextProvider } from "./context/VehicleContext";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <AuthContextProvider>
-      <VehicleContextProvider>
-        <App />
-      </VehicleContextProvider>
+      <App />
     </AuthContextProvider>
   </React.StrictMode>,
 );
