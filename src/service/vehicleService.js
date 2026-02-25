@@ -23,13 +23,20 @@ export const getVehicle = async () => {
 export const getVehicleById = async (id) => {
   const { data, error } = await supabase
     .from("vehiculos")
-    .select("*")
+    .select("*, fabricas(*)")
     .eq("id", id)
     .single();
 
+  if (error) throw error;
+  return data;
+};
+
+export const getMarcas = async () => {
+  const { data, error } = await supabase
+    .from("fabricas")
+    .select("id,fabricante");
   if (error) {
     throw error;
   }
-
   return data;
 };
