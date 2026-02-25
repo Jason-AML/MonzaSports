@@ -88,11 +88,11 @@ export const Login = () => {
             {/* FORM */}
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">
+                <label className="block text-xs font-bold uppercase tracking-widest text-black mb-2">
                   Email Address
                 </label>
                 <input
-                  className="w-full px-4 py-3 bg-apex-gray rounded-xl form-input-focus"
+                  className="w-full px-4 py-3 bg-apex-gray rounded-xl text-black form-input-focus"
                   placeholder="julian@example.com"
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
@@ -100,11 +100,11 @@ export const Login = () => {
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">
+                <label className="block text-xs font-bold uppercase tracking-widest text-black mb-2">
                   Password
                 </label>
                 <input
-                  className="w-full px-4 py-3 bg-apex-gray rounded-xl form-input-focus"
+                  className="w-full px-4 py-3 bg-apex-gray rounded-xl text-black form-input-focus"
                   placeholder="••••••••"
                   type="password"
                   onChange={(e) => setPassword(e.target.value)}
@@ -118,7 +118,7 @@ export const Login = () => {
                 Login
               </button>
             </form>
-            <div className=" flex justify-between">
+            <div className=" flex justify-between text-black">
               <Link to="/register" className=" hover:text-accent pt-5">
                 No tienes cuenta?
               </Link>
