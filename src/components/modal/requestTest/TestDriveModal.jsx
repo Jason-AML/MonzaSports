@@ -21,8 +21,7 @@ export const TestDriveModal = ({ closeModal, data }) => {
                 className="w-full h-full bg-cover bg-center hover:scale-105 transition-transform duration-700"
                 data-alt="front profile of a white Porsche Taycan"
                 style={{
-                  backgroundImage:
-                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuATLBu3s7C3XrSz_I5GdDBJfZjVB763ZSUMgfjlc1ZX8M0jIBbigHArw6e91mYakri01eVf74NuXExB-JDHUvVYviUs7jE0lr-DVF6_ch7VPkd0utUqWFX39edwa3rtb22IlTL7xRICbuOLnKcwVlqjF8Tx1xS7w0XdrS3iHl3-uQTBaqBXe_VSzWbocSWu_esK8tzG3D2HGOF7gyY7q5nOQq8GKOPc6ePzUJXvQ5xejRukl_FNd0Wo4LC9rWj7dQBnyfpZfxbv060')",
+                  backgroundImage: `url(${data.url_img})`,
                 }}
               ></div>
             </div>
