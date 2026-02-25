@@ -1,6 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import { getVehicle } from "../service/vehicleService";
 import { createContext } from "react";
+import { Outlet } from "react-router-dom";
 
 export const VehicleContext = createContext();
 export const useVehicle = () => {
@@ -35,7 +36,7 @@ export const VehicleContextProvider = ({ children }) => {
         loading,
       }}
     >
-      {children}
+      {children ?? <Outlet />}
     </VehicleContext.Provider>
   );
 };
