@@ -3,7 +3,7 @@ import { HeroVideo } from "../components/home/hero/HeroVideo";
 import { CategorieSplit } from "../components/home/categories/CategorieSplit";
 import { Testimonials } from "../components/home/testimonials/Testimonials";
 import { LatestNews } from "../components/home/news/LatestNews";
-HeroVideo;
+
 export const Home = () => {
   return (
     <div className="bg-[#0A0A0A] dark:bg-background-dark font-display text-white selection:bg-primary/30 min-h-screen">
