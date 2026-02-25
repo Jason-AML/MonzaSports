@@ -35,8 +35,7 @@ export const Reservation = () => {
                 className="relative aspect-[16/10] bg-cover bg-center"
                 data-alt="Sleek black 2024 Taycan Turbo S side profile"
                 style={{
-                  backgroundImage:
-                    "url('https://lh3.googleusercontent.com/aida-public/AB6AXuDks24-o1mlOZuLdtUkEIGOS6ApsNU21wrs4o-qPCTW_AQHbi1AZBm53oAy2H76ZMBghV2H1mo2XYlB1jMthIoA6wGXYpb9TxnXYt-Qv2gA1BgrmDRRqTvz5wMcVJseKL0IVcZC_6cD-YSI5U9oGGZsJ2C9HPQgDqt18E5ky6LaJsIgBgwTyQz3KHXj2v0EAK6k8dBFWTkSBebWHjT5Ck4CaStRGABI82DkNdJZDy__csruLhglpi8m2EOhpZiG3qUj4z6UxcBw30M')",
+                  backgroundImage: `url(${vehicle.url_img})`,
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent"></div>
@@ -310,7 +309,7 @@ export const Reservation = () => {
             {/*Final Action*/}
             <div className="pt-8 border-t border-white/10">
               <button
-                className="w-full bg-[#00D3BB] text-background-dark py-5 rounded-lg font-black uppercase tracking-[0.2em] text-lg hover:bg-yellow-500 transition-all shadow-xl shadow-primary/10 mb-6 group flex items-center justify-center gap-3"
+                className="w-full cursor-pointer bg-[#00D3BB] text-background-dark py-5 rounded-lg font-black uppercase tracking-[0.2em] text-lg hover:bg-yellow-500 transition-all shadow-xl shadow-primary/10 mb-6 group flex items-center justify-center gap-3"
                 type="submit"
               >
                 <span>Complete Reservation</span>
