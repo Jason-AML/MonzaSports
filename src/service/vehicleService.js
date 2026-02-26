@@ -61,3 +61,13 @@ export const createTestDrive = async (formTestDrive) => {
   }
   return data;
 };
+
+export const getTestDrive = async () => {
+  const { data, error } = await supabase
+    .from("test_drive")
+    .select("*, id_vehicle(*)");
+  if (error) {
+    console.log("error en getTest", error);
+  }
+  return data;
+};

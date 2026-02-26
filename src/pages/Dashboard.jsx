@@ -1,5 +1,29 @@
+import { useEffect, useState } from "react";
 import { Layout } from "../layout/Layout";
+import { getTestDrive } from "../service/vehicleService";
+import { useAuthContext } from "../context/AuthContext";
+
 export const Dashboard = () => {
+  const { user } = useAuthContext();
+  const [testDrive, setTestDrive] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const insertTestDrive = async () => {
+    setLoading(true);
+    try {
+      const result = await getTestDrive();
+      setTestDrive(result);
+    } catch (error) {
+      console.error(error);
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  console.log(testDrive);
+  useEffect(() => {
+    insertTestDrive();
+  }, [user]);
   return (
     <>
       <Layout>
@@ -25,85 +49,49 @@ export const Dashboard = () => {
             </div>
             <div className="flex overflow-x-auto gap-6 pb-6 no-scrollbar snap-x">
               {/* Vehicle 1 */}
-              <div className="flex-none w-[450px] snap-center">
-                <div className="relative group cursor-pointer overflow-hidden rounded-xl bg-card-dark aspect-[16/10]">
+              {testDrive ? (
+                testDrive.map((item) => (
                   <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    data-alt="High-end charcoal grey sports car in a studio"
-                    style={{
-                      backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuDG2hejDzH75v3BcTc2H6EakOtAcThJjWsECCaXGALIhhc5_epHLRtNoNoa7NqqmkSmqjseNFEOp0DaAqdNHeGTI7I2quL7jO9YcB4Al_tjQSzkZxt8JYGnOuxMvJ3I_DYxLYybapw9IV-YKPgDTMnH-j7aA9Trqn7K5aWs8CezW418PNs0Z3bBRtBYHL0RLZA6Az5yGEIEi2k1ViTfxBvB4365ExcDGTgsnGRHwORRkwxQcRgPVwuPzG6BZVwOyO7ssHQ7oCMw6Fg')`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                    }}
-                  ></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-primary text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                      Active
-                    </span>
-                  </div>
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold text-white mb-1">
-                      Apex GT-S
-                    </h3>
-                    <div className="flex items-center gap-4 text-slate-300 text-sm">
-                      <span className="flex items-center gap-1">
-                        <span className="material-symbols-outlined text-xs">
-                          speed
-                        </span>{" "}
-                        12,450 mi
-                      </span>
-                      <span className="flex items-center gap-1 text-green-400 font-medium">
-                        <span className="material-symbols-outlined text-xs">
-                          ev_station
-                        </span>{" "}
-                        88% Fuel
-                      </span>
+                    key={item.id}
+                    className="flex-none w-[450px] snap-center"
+                  >
+                    <div className="relative group cursor-pointer overflow-hidden rounded-xl bg-card-dark aspect-[16/10]">
+                      <div
+                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                        data-alt="High-end charcoal grey sports car in a studio"
+                        style={{
+                          backgroundImage: `url(${item.id_vehicle.url_img})`,
+                          backgroundSize: "cover",
+                          backgroundPosition: "center",
+                          backgroundRepeat: "no-repeat",
+                        }}
+                      ></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
+                      <div className="absolute top-4 right-4">
+                        <span className="bg-primary text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                          {item.estado}
+                        </span>
+                      </div>
+                      <div className="absolute bottom-6 left-6 right-6">
+                        <h3 className="text-2xl font-bold text-white mb-1">
+                          {item.id_vehicle.nombre_vehiculo}
+                        </h3>
+                        <div className="flex items-center gap-4 text-slate-300 text-sm">
+                          <span className="flex items-center gap-1">
+                            {item.hora_asignada}
+                          </span>
+                          <span className="flex items-center gap-1 text-green-400 font-medium">
+                            {item.fecha_asignada}
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                ))
+              ) : (
+                <p>no hay test</p>
+              )}
               {/* Vehicle 2 */}
-              <div className="flex-none w-[450px] snap-center">
-                <div className="relative group cursor-pointer overflow-hidden rounded-xl bg-[#2B2F36] aspect-[16/10]">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                    data-alt="Deep blue luxury SUV parked in a modern driveway"
-                    style={{
-                      backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuBOxS5qzFWXn6pLprSGFQkDb3I9ClSpF5RtdSa00q8mzWYT6n1s1zCdWQRm3A9q92yv7iB6eSWtj6MsSn0NBf7UL66qzgFPuPtGeilXqtZuTDA1wW5DQtV2Jn6fL9Z7AU2O0UHnG1bGTbRp9MRZwzGQ7LM2quL-GjMSysp1VK3qEQpwl73mtFvL4gSItwBz3vehf1We0_fod7eSB2irHz_jJ6xJIfzyvLvCU5kd2Zg9JEkBRFZwnkeiKXyEBYuCBFA03FA3n8HBVGg')`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      backgroundRepeat: "no-repeat",
-                    }}
-                  ></div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-slate-700 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                      In Service
-                    </span>
-                  </div>
-                  <div className="absolute bottom-6 left-6 right-6">
-                    <h3 className="text-2xl font-bold text-white mb-1">
-                      Apex Sentinel
-                    </h3>
-                    <div className="flex items-center gap-4 text-slate-300 text-sm">
-                      <span className="flex items-center gap-1">
-                        <span className="material-symbols-outlined text-xs">
-                          speed
-                        </span>{" "}
-                        4,200 mi
-                      </span>
-                      <span className="flex items-center gap-1 text-[#C59E3E] font-medium">
-                        <span className="material-symbols-outlined text-xs ">
-                          build
-                        </span>{" "}
-                        Routine Maintenance
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </section>
 

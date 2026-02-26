@@ -66,6 +66,7 @@ export const VehicleContextProvider = ({ children }) => {
         loadingCategory,
         marcas,
         insertTestDrive,
+        adding,
       }}
     >
       {children ?? <Outlet />}
