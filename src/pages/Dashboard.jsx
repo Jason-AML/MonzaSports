@@ -20,7 +20,6 @@ export const Dashboard = () => {
       setLoading(false);
     }
   };
-  console.log(testDrive);
   useEffect(() => {
     insertTestDrive();
   }, [user]);
@@ -49,49 +48,51 @@ export const Dashboard = () => {
             </div>
             <div className="flex overflow-x-auto gap-6 pb-6 no-scrollbar snap-x">
               {/* Vehicle 1 */}
-              {testDrive ? (
-                testDrive.map((item) => (
-                  <div
-                    key={item.id}
-                    className="flex-none w-[450px] snap-center"
-                  >
-                    <div className="relative group cursor-pointer overflow-hidden rounded-xl bg-card-dark aspect-[16/10]">
-                      <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
-                        data-alt="High-end charcoal grey sports car in a studio"
-                        style={{
-                          backgroundImage: `url(${item.id_vehicle.url_img})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                          backgroundRepeat: "no-repeat",
-                        }}
-                      ></div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
-                      <div className="absolute top-4 right-4">
-                        <span className="bg-primary text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
-                          {item.estado}
-                        </span>
-                      </div>
-                      <div className="absolute bottom-6 left-6 right-6">
-                        <h3 className="text-2xl font-bold text-white mb-1">
-                          {item.id_vehicle.nombre_vehiculo}
-                        </h3>
-                        <div className="flex items-center gap-4 text-slate-300 text-sm">
-                          <span className="flex items-center gap-1">
-                            {item.hora_asignada}
+              {testDrive.length > 0
+                ? testDrive.map((item) => (
+                    <div
+                      key={item.id}
+                      className="flex-none w-[450px] snap-center"
+                    >
+                      <div className="relative group cursor-pointer overflow-hidden rounded-xl bg-card-dark aspect-[16/10]">
+                        <div
+                          className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                          data-alt="High-end charcoal grey sports car in a studio"
+                          style={{
+                            backgroundImage: `url(${item.id_vehicle.url_img})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
+                          }}
+                        ></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
+                        <div className="absolute top-4 right-4">
+                          <span className="bg-primary text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                            {item.id_estado.estado}
                           </span>
-                          <span className="flex items-center gap-1 text-green-400 font-medium">
-                            {item.fecha_asignada}
-                          </span>
+                        </div>
+                        <div className="absolute bottom-6 left-6 right-6">
+                          <h3 className="text-2xl font-bold text-white mb-1">
+                            {item.id_vehicle.nombre_vehiculo}
+                          </h3>
+                          <div className="flex items-center gap-4 text-slate-300 text-sm">
+                            <span className="flex items-center gap-1">
+                              {item.hora_asignada?.split("+")[0]}
+                            </span>
+                            <span className="flex items-center gap-1 text-green-400 font-medium">
+                              {item.fecha_asignada
+                                ?.split("T")[0]
+                                .split("-")
+                                .reverse()
+                                .join("/")}
+                            </span>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))
-              ) : (
-                <p>no hay test</p>
-              )}
-              {/* Vehicle 2 */}
+                  ))
+                : "no hay autos"}
+              {}
             </div>
           </section>
 
