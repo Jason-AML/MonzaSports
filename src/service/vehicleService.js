@@ -13,7 +13,6 @@ export const getVehicle = async () => {
     `);
 
   if (error) {
-    console.error("Error al obtener vehiculos", error);
     throw error;
   }
 
@@ -44,7 +43,9 @@ export const getMarcas = async () => {
 export const createTestDrive = async (formTestDrive) => {
   const {
     data: { user },
+    error: authError,
   } = await supabase.auth.getUser();
+  if (authError || !user) throw new Error("usuario no autenticado");
   const { data, error } = await supabase
     .from("test_drive")
     .insert({
@@ -55,19 +56,19 @@ export const createTestDrive = async (formTestDrive) => {
       experiencia: formTestDrive.experience,
     })
     .select();
-  if (error) {
-    console.log("Error al crear el test Drive", error);
-    throw error;
-  }
+  if (error) throw error;
+
   return data;
 };
 
 export const getTestDrive = async () => {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   const { data, error } = await supabase
     .from("test_drive")
-    .select("*, id_vehicle(*)");
-  if (error) {
-    console.log("error en getTest", error);
-  }
+    .select("*, id_vehicle(*), id_estado(*)")
+    .eq("id_user", user.id);
+  if (error) throw error;
   return data;
 };
