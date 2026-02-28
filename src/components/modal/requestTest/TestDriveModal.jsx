@@ -3,7 +3,6 @@ import { useVehicle } from "../../../context/VehicleContext";
 
 export const TestDriveModal = ({ closeModal, data }) => {
   const { insertTestDrive } = useVehicle();
-
   const TIME_SLOTS = [
     { label: "09:00 AM", available: true },
     { label: "10:30 AM", available: true },
@@ -47,8 +46,43 @@ export const TestDriveModal = ({ closeModal, data }) => {
 
   const validate = () => {
     const newErrors = {};
-    if (!formTestDrive.date) newErrors.date = "Please select a date.";
-    if (!formTestDrive.time) newErrors.time = "Please select a time slot.";
+
+    if (!formTestDrive.date) {
+      newErrors.date = "Please select a date.";
+    } else {
+      const selectedDate = new Date(formTestDrive.date);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      if (selectedDate < today) {
+        newErrors.date = "Please select a future date.";
+      }
+    }
+
+    if (!formTestDrive.time) {
+      newErrors.time = "Please select a time slot.";
+    } else {
+      const selectedDate = new Date(formTestDrive.date);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+
+      const isToday = selectedDate.getTime() === today.getTime();
+
+      if (isToday) {
+        const [time, modifier] = formTestDrive.time.split(" ");
+        let [hours, minutes] = time.split(":").map(Number);
+        if (modifier === "PM" && hours !== 12) hours += 12;
+        if (modifier === "AM" && hours === 12) hours = 0;
+
+        const slotTime = new Date();
+        slotTime.setHours(hours, minutes, 0, 0);
+
+        if (slotTime <= new Date()) {
+          newErrors.time = "That time slot has already passed.";
+        }
+      }
+    }
+
     return newErrors;
   };
 
