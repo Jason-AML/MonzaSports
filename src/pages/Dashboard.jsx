@@ -8,7 +8,7 @@ export const Dashboard = () => {
   const [testDrive, setTestDrive] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const insertTestDrive = async () => {
+  const getTestDriveData = async () => {
     setLoading(true);
     try {
       const result = await getTestDrive();
@@ -21,7 +21,7 @@ export const Dashboard = () => {
     }
   };
   useEffect(() => {
-    insertTestDrive();
+    getTestDriveData();
   }, [user]);
   return (
     <>
