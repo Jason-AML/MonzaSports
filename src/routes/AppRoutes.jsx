@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PublicRoute from "./PublicRoutes";
 import PrivateRoutes from "./PrivateRoutes";
-import ScrollToTop from "../components/scroll/ScrollToTop";
+import ScrollToTop from "../utils/hooks/useScrollToTop";
 import { VehicleContextProvider } from "../context/VehicleContext";
 
 const Home = lazy(() =>
