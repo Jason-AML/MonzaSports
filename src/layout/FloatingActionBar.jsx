@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 export const FloatingActionBar = () => {
+  const { t } = useTranslation();
   return (
     <>
       {/*Optional Bottom Action Bar (Floating Navigation Hint)*/}
@@ -10,15 +13,15 @@ export const FloatingActionBar = () => {
                   hidden lg:flex"
         >
           <span className="text-xs text-zinc-400 font-bold uppercase tracking-widest">
-            Need help?
+            {t("floatingBar.help")}
           </span>
           <div className="h-4 w-px bg-white/20"></div>
           <a className="text-xs font-bold text-white hover:underline" href="#">
-            Contact Concierge
+            {t("floatingBar.contact")}
           </a>
           <div className="h-4 w-px bg-white/20"></div>
           <a className="text-xs font-bold text-white hover:underline" href="#">
-            Chat Now
+            {t("floatingBar.chat")}
           </a>
         </div>
       </div>

@@ -62,7 +62,7 @@ export const Collections = () => {
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-xs font-bold uppercase tracking-widest text-accent mb-4">
-                      Body Style
+                      Brands
                     </h4>
                     <div className="grid grid-cols-2 gap-2">
                       <button

@@ -1,4 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 export const Footer = () => {
+  const { t } = useTranslation();
   return (
     <footer className="bg-[#0A0A0A] text-white border-t border-white/10 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -13,8 +16,7 @@ export const Footer = () => {
               </h2>
             </div>
             <p className="text-gray-500 mb-8 max-w-sm">
-              Redefining the boundaries of performance and luxury since 1998.
-              Visit our global flagships in Tokyo, London, and Los Angeles.
+              {t("footer.description")}
             </p>
             <div className="flex gap-4">
               <a
@@ -43,64 +45,64 @@ export const Footer = () => {
           </div>
           <div className="md:col-span-2">
             <h5 className="font-bold uppercase tracking-widest text-sm mb-6">
-              Inventory
+              {t("footer.inventory.title")}
             </h5>
             <ul className="space-y-4 text-gray-500 text-sm">
               <li>
                 <a className="hover:text-white transition-colors" href="#">
-                  New Models
+                  {t("footer.inventory.new_models")}
                 </a>
               </li>
               <li>
                 <a className="hover:text-white transition-colors" href="#">
-                  Certified Pre-owned
+                  {t("footer.inventory.pre_owned")}
                 </a>
               </li>
               <li>
                 <a className="hover:text-white transition-colors" href="#">
-                  Limited Editions
+                  {t("footer.inventory.limited")}
                 </a>
               </li>
               <li>
                 <a className="hover:text-white transition-colors" href="#">
-                  Track Ready
+                  {t("footer.inventory.track")}
                 </a>
               </li>
             </ul>
           </div>
           <div className="md:col-span-2">
             <h5 className="font-bold uppercase tracking-widest text-sm mb-6">
-              Company
+              {t("footer.company.title")}
             </h5>
             <ul className="space-y-4 text-gray-500 text-sm">
               <li>
                 <a className="hover:text-white transition-colors" href="#">
-                  Our Story
+                  {t("footer.company.story")}
                 </a>
               </li>
               <li>
                 <a className="hover:text-white transition-colors" href="#">
-                  Motorsports
+                  {t("footer.company.motorsports")}
                 </a>
               </li>
               <li>
                 <a className="hover:text-white transition-colors" href="#">
-                  Sustainability
+                  {t("footer.company.sustainability")}
                 </a>
               </li>
               <li>
                 <a className="hover:text-white transition-colors" href="#">
-                  Careers
+                  {t("footer.company.careers")}
                 </a>
               </li>
             </ul>
           </div>
           <div className="md:col-span-4">
             <h5 className="font-bold uppercase tracking-widest text-sm mb-6">
-              Newsletter
+              {t("footer.newsletter.title")}
             </h5>
             <p className="text-gray-500 text-sm mb-6">
-              Stay ahead of the curve. Get exclusive invites and updates.
+              {t("footer.newsletter.subtitle")}
             </p>
             <form className="flex gap-2">
               <input
@@ -109,22 +111,22 @@ export const Footer = () => {
                 type="email"
               />
               <button className="px-6 py-2 bg-primary text-background-dark font-bold rounded-lg hover:bg-primary/90 transition-colors uppercase text-xs">
-                Join
+                {t("footer.newsletter.btn")}
               </button>
             </form>
           </div>
         </div>
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-600 text-[10px] uppercase tracking-widest">
-          <p>© 2026 Monza Motors Group. All rights reserved.</p>
+          <p>{t("footer.bottom.rights")}</p>
           <div className="flex gap-8">
             <a className="hover:text-white" href="#">
-              Privacy Policy
+              {t("footer.bottom.privacy")}
             </a>
             <a className="hover:text-white" href="#">
-              Terms of Service
+              {t("footer.bottom.terms")}
             </a>
             <a className="hover:text-white" href="#">
-              Cookies
+              {t("footer.bottom.cookies")}
             </a>
           </div>
         </div>

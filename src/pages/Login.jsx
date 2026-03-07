@@ -2,8 +2,10 @@ import { useState } from "react";
 import { useAuthUser } from "../hooks/useAuthUser";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 export const Login = () => {
+  const { t } = useTranslation();
   const { signUpUser } = useAuthUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,10 +18,11 @@ export const Login = () => {
     try {
       await signUpUser(email, password);
       setLoading(false);
-      toast.success("Bienvenido");
+      toast.success(t("login.toast.succes"));
       navigate("/");
     } catch (error) {
       console.log(error);
+      toast.error(t("login.toast.error"));
     } finally {
       setLoading(false);
       setEmail("");
@@ -50,12 +53,10 @@ export const Login = () => {
 
             <div className="max-w-md">
               <h1 className="text-6xl font-bold text-accent tracking-tighter mb-6 leading-none">
-                JOIN THE <br /> INNER CIRCLE
+                {t("login.join_title")}
               </h1>
               <p className="text-gray-300 text-xl font-medium leading-relaxed">
-                Access exclusive vehicle releases, member-only track events, and
-                personalized automotive services tailored for the discerning
-                driver.
+                {t("login.join_subtitle")}
               </p>
             </div>
 
@@ -78,18 +79,16 @@ export const Login = () => {
 
             <header className="mb-10">
               <h2 className="text-3xl font-bold tracking-tight mb-2 text-accent">
-                Login with your account
+                {t("login.title")}
               </h2>
-              <p className="text-gray-500">
-                Welcome back to the pinnacle of luxury mobility.
-              </p>
+              <p className="text-gray-500">{t("login.subtitle")}</p>
             </header>
 
             {/* FORM */}
             <form className="space-y-5" onSubmit={handleSubmit}>
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest text-black mb-2">
-                  Email Address
+                  {t("login.email_label")}
                 </label>
                 <input
                   className="w-full px-4 py-3 bg-apex-gray rounded-xl text-black form-input-focus"
@@ -101,7 +100,7 @@ export const Login = () => {
 
               <div>
                 <label className="block text-xs font-bold uppercase tracking-widest text-black mb-2">
-                  Password
+                  {t("login.password_label")}
                 </label>
                 <input
                   className="w-full px-4 py-3 bg-apex-gray rounded-xl text-black form-input-focus"
@@ -115,15 +114,15 @@ export const Login = () => {
                 disabled={loading}
                 className="w-full py-4 bg-[#00D3BB] text-apex-dark font-bold uppercase tracking-widest rounded-xl hover:shadow-lg hover:text-white hover:shadow-primary/20 transition-all active:scale-[0.98]"
               >
-                Login
+                {t("login.btn")}
               </button>
             </form>
             <div className=" flex justify-between text-black">
               <Link to="/register" className=" hover:text-accent pt-5">
-                No tienes cuenta?
+                {t("login.no_account")}
               </Link>
               <Link to="/" className=" hover:text-accent pt-5">
-                Volver al inicio
+                {t("login.back_home")}
               </Link>
             </div>
           </div>

@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import bgferrari from "../../../assets/ferrari.mp4";
+import { useTranslation } from "react-i18next";
 
 export const HeroVideo = () => {
+  const { t } = useTranslation();
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
       <div className="absolute inset-0 z-0">
@@ -20,21 +22,20 @@ export const HeroVideo = () => {
       </div>
       <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <h1 className="text-5xl md:text-8xl font-bold mb-6 tracking-tighter leading-none text-glow">
-          PRECISION <br /> IN MOTION.
+          {t("home_hero.title")}
         </h1>
         <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-xl mx-auto font-light">
-          Experience the pinnacle of automotive engineering and high-performance
-          motorcycles. Designed for those who refuse to follow.
+          {t("home_hero.p")}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link
             to="/collections"
             className="px-10 py-4 bg-[#00C79F] text-background-dark font-bold uppercase tracking-widest rounded-lg hover:bg-primary/90 transition-all cursor-pointer"
           >
-            Explore Collection
+            {t("home_hero.btn_collection")}
           </Link>
           <button className="px-10 py-4 border border-white/20 hover:border-primary/50 font-bold uppercase tracking-widest rounded-lg transition-all backdrop-blur-sm cursor-pointer">
-            Our Legacy
+            {t("home_hero.btn_legacy")}
           </button>
         </div>
       </div>

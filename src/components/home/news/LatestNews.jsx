@@ -1,16 +1,19 @@
+import { useTranslation } from "react-i18next";
+
 export const LatestNews = () => {
+  const { t } = useTranslation();
   return (
     <section className="py-24 bg-surface-dark/50 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="flex justify-between items-center mb-12">
           <h2 className="text-3xl font-bold tracking-tighter">
-            LATEST UPDATES
+            {t("latest_news.title")}
           </h2>
           <a
             className="text-primary text-sm font-bold uppercase tracking-widest flex items-center gap-2 hover:gap-3 transition-all"
             href="#"
           >
-            View All Posts{" "}
+            {t("latest_news.view_all")}{" "}
             <span className="material-symbols-outlined text-xs">
               arrow_forward
             </span>
@@ -27,14 +30,13 @@ export const LatestNews = () => {
               />
             </div>
             <span className="text-xs text-primary font-bold uppercase tracking-widest mb-3 block">
-              Engineering
+              {t("latest_news.news_1.tag")}
             </span>
             <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors">
-              The Apex V12: A Masterpiece in Lightweight Casting
+              {t("latest_news.news_1.title")}
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
-              Our engineers have broken new ground in metallurgy, creating our
-              lightest and most powerful internal combustion engine to date...
+              {t("latest_news.news_1.subtitle")}
             </p>
           </div>
           {/*News Card 2*/}
@@ -47,14 +49,13 @@ export const LatestNews = () => {
               />
             </div>
             <span className="text-xs text-primary font-bold uppercase tracking-widest mb-3 block">
-              Future Tech
+              {t("latest_news.news_2.tag")}
             </span>
             <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors">
-              Sustainable Speed: Our 2025 Electric Vision
+              {t("latest_news.news_2.title")}
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
-              Apex Motors announces a full transition to hybrid performance
-              systems, ensuring raw speed meets global responsibility.
+              {t("latest_news.news_2.subtitle")}
             </p>
           </div>
           {/*News Card 3*/}
@@ -67,14 +68,13 @@ export const LatestNews = () => {
               />
             </div>
             <span className="text-xs text-primary font-bold uppercase tracking-widest mb-3 block">
-              Lifestyle
+              {t("latest_news.news_3.tag")}
             </span>
             <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors">
-              Apex Circuit Series: Registration Now Open
+              {t("latest_news.news_3.title")}
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed line-clamp-2">
-              Join us for a three-city European tour. Master your vehicle under
-              the guidance of our professional race instructors.
+              {t("latest_news.news_3.subtitle")}
             </p>
           </div>
         </div>

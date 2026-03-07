@@ -1,13 +1,16 @@
+import { useTranslation } from "react-i18next";
+
 export const Testimonials = () => {
+  const { t } = useTranslation();
   return (
     <section className="py-24 px-6 lg:px-10 max-w-7xl mx-auto ">
       <div className="flex items-end justify-between mb-16">
         <div>
           <h4 className="text-[#00C79F] font-bold uppercase tracking-widest mb-2">
-            Voices of Excellence
+            {t("testimonials.tag")}
           </h4>
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
-            CLIENT EXPERIENCES
+            {t("testimonials.title")}
           </h2>
         </div>
         <div className="hidden md:flex gap-4">
@@ -29,9 +32,7 @@ export const Testimonials = () => {
             <span className="material-symbols-outlined">star</span>
           </div>
           <p className="text-2xl md:text-3xl font-light italic leading-relaxed text-gray-300">
-            "The delivery process was seamless. Seeing my Apex-spec GT parked in
-            the showroom for the first time was a moment I'll never forget. The
-            attention to detail is truly unparalleled in the industry."
+            {t("testimonials.review_1")}
           </p>
           <div className="flex items-center gap-4 mt-12">
             <img
@@ -42,7 +43,7 @@ export const Testimonials = () => {
             <div>
               <h5 className="font-bold">Julian Sterling</h5>
               <span className="text-sm text-gray-500 uppercase tracking-widest">
-                Collector &amp; Enthusiast
+                {t("testimonials.role_1")}
               </span>
             </div>
           </div>
@@ -52,8 +53,7 @@ export const Testimonials = () => {
             format_quote
           </span>
           <p className="text-lg text-gray-300 grow">
-            "Monza Motors doesn't just sell vehicles; they sell a lifestyle.
-            Their track day events are the gold standard for owners."
+            {t("testimonials.review_2")}
           </p>
           <div className="flex items-center gap-4 mt-8 pt-8 border-t border-primary/10">
             <img
@@ -64,7 +64,7 @@ export const Testimonials = () => {
             <div>
               <h5 className="font-bold">Sarah Chen</h5>
               <span className="text-sm text-gray-500 uppercase tracking-widest">
-                Superbike Pilot
+                {t("testimonials.role_2")}
               </span>
             </div>
           </div>
