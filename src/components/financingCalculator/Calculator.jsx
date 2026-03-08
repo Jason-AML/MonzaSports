@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { useCurrency } from "../../hooks/useCurrency";
 
 export const Calculator = ({ price }) => {
   const [month, setMonth] = useState("60");
-  const totalFinancing_Estimator = Math.round(price / month);
+  const { format } = useCurrency();
+  const totalFinancing_Estimator = price / month;
   return (
     <div className="bg-panel-dark/40 border border-border-dark rounded-xl p-6 backdrop-blur-sm">
       <h4 className="text-white text-sm font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
@@ -24,7 +26,7 @@ export const Calculator = ({ price }) => {
               className="w-full h-10 bg-background-dark/50 border border-border-dark rounded
                focus:ring-primary focus:border-primary text-sm pl-7 text-white"
               type="text"
-              value={price}
+              value={format(price)}
               readOnly
             />
           </div>
@@ -61,7 +63,7 @@ export const Calculator = ({ price }) => {
             Estimated Monthly
           </span>
           <span className="text-white text-xl font-bold">
-            ${totalFinancing_Estimator}
+            {format(totalFinancing_Estimator)}
             <span className="text-xs text-slate-500">/mo</span>
           </span>
         </div>

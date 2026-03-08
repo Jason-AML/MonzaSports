@@ -51,7 +51,6 @@ export const useDataVehicle = () => {
   useEffect(() => {
     getCategory();
     requestVehicle();
-    console.log(vehicles);
   }, [getCategory, requestVehicle]);
   return {
     vehicles,

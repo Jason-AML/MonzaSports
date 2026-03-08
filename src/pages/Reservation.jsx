@@ -1,10 +1,14 @@
+import { useCurrency } from "../hooks/useCurrency";
 import { Layout } from "../layout/Layout";
 import { useLocation } from "react-router-dom";
 export const Reservation = () => {
   const { state } = useLocation();
+  const { format } = useCurrency();
   const vehicle = state?.vehicle;
   let logistica = 10000;
+
   const total = logistica + vehicle.precio;
+  const discount = total * 0.05;
   return (
     <Layout>
       <div className="max-w-7xl mx-auto px-6 py-20 lg:px-12 lg:py-16 ">
@@ -74,34 +78,38 @@ export const Reservation = () => {
                       Vehicle Base Price
                     </span>
                     <span className="text-white font-medium">
-                      ${vehicle.precio}
+                      {format(vehicle.precio)}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-white/60 text-sm">
                       Logistics &amp; Handling
                     </span>
-                    <span className="text-white font-medium">${logistica}</span>
+                    <span className="text-white font-medium">
+                      {format(logistica)}
+                    </span>
                   </div>
                   <div className="flex justify-between items-center pt-2 border-t border-white/5">
                     <span className="text-white font-bold">
                       Total Vehicle Price
                     </span>
-                    <span className="text-white font-bold">${total}</span>
+                    <span className="text-white font-bold">
+                      {format(total)}
+                    </span>
                   </div>
                 </div>
                 <div className="bg-primary/10 border border-primary/20 rounded-lg p-6 flex justify-between items-center">
                   <div>
                     <p className="text-primary font-bold text-lg leading-tight">
-                      Reservation Fee
+                      Reservation Fee 5%
                     </p>
                     <p className="text-[10px] text-primary uppercase tracking-widest mt-1">
                       Deductible from total
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-primary font-black text-2xl">
-                      $2,500.00
+                    <p className="text-primary font-black text-xl">
+                      {format(discount)}
                     </p>
                     <p className="text-[10px] text-white/40 uppercase">
                       Payable Today

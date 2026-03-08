@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { useCurrency } from "../../hooks/useCurrency";
 
 export const Card = ({ data }) => {
+  const { format } = useCurrency();
   return (
     <div className=" group bg-[#161616] rounded-2xl">
       <div className="relative aspect-16/10 overflow-hidden">
@@ -46,7 +48,7 @@ export const Card = ({ data }) => {
         </div>
         <div className="flex items-center justify-between border-t border-white/5 pt-6">
           <span className="text-2xl font-bold tracking-tighter">
-            ${data.precio}
+            {format(data.precio)}
           </span>
           <button className="size-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all">
             <Link

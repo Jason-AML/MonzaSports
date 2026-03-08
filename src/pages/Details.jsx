@@ -6,11 +6,12 @@ import { Calculator } from "../components/financingCalculator/Calculator";
 import { useVehicle } from "../context/VehicleContext";
 import { useEffect, useState } from "react";
 import { getVehicleById } from "../service/vehicleService";
+import { useCurrency } from "../hooks/useCurrency";
 
 export const Details = () => {
   const { id } = useParams();
   const { vehicles } = useVehicle();
-
+  const { format } = useCurrency();
   const [vehicle, setVehicle] = useState(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -228,11 +229,8 @@ export const Details = () => {
                         Model Year {vehicle.anio}
                       </p>
                       <div className="flex items-baseline gap-2 mb-8">
-                        <span className="text-white text-5xl font-bold">
-                          ${vehicle.precio}
-                        </span>
-                        <span className="text-slate-500 text-sm uppercase">
-                          Dollars
+                        <span className="text-white text-3xl font-bold">
+                          {format(vehicle.precio)}
                         </span>
                       </div>
                       <div className="space-y-4 flex flex-col justify-center items-center">
