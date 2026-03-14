@@ -15,6 +15,7 @@ export const VehicleContextProvider = ({ children }) => {
   const {
     vehicles,
     marcas,
+    testDrive,
     loading,
     error,
     insertTestDrive,
@@ -27,6 +28,7 @@ export const VehicleContextProvider = ({ children }) => {
       value={{
         vehicles,
         marcas,
+        testDrive,
         loading,
         error,
         insertTestDrive,

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useVehicle } from "../../../context/VehicleContext";
+import { toast } from "react-toastify";
 
 export const TestDriveModal = ({ closeModal, data }) => {
   const { insertTestDrive } = useVehicle();
@@ -97,7 +98,7 @@ export const TestDriveModal = ({ closeModal, data }) => {
       await insertTestDrive(formTestDrive);
       closeModal();
     } catch (error) {
-      console.error("Error al reservar:", error);
+      toast.error(`Error al reservar`);
     } finally {
       setLoading(false);
     }

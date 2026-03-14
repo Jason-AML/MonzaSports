@@ -55,20 +55,54 @@ export const createTestDrive = async (formTestDrive) => {
       hora_asignada: formTestDrive.time,
       experiencia: formTestDrive.experience,
     })
-    .select();
+    .select()
+    .single();
   if (error) throw error;
 
   return data;
 };
-
-export const getTestDrive = async () => {
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+export const getTestDriveWithRelations = async (testDriveId, userEmail) => {
   const { data, error } = await supabase
     .from("test_drive")
-    .select("*, id_vehicle(*), id_estado(*)")
-    .eq("id_user", user.id);
+    .select(
+      `
+      id,
+      created_at,
+      fecha_asignada,
+      hora_asignada,
+      experiencia,
+      id_user,
+      vehiculos (
+        nombre_vehiculo,
+        modelo,
+        anio,
+        motor,
+        poder_hp,
+        precio,
+        fabricas (
+          nombre_planta,
+          fabricante,
+          pais,
+          ciudad
+        )
+      ),
+      estados_test (
+        estado
+      )
+    `,
+    )
+    .eq("id", testDriveId)
+    .single();
+
+  if (error) throw error;
+
+  return { ...data, user_email: userEmail };
+};
+export const getTestDrive = async () => {
+  const { data, error } = await supabase
+    .from("test_drive")
+    .select("*, id_vehicle(*), id_estado(*)");
+
   if (error) throw error;
   return data;
 };
