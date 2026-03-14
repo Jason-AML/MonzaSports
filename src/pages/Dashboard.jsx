@@ -1,28 +1,15 @@
-import { useEffect, useState } from "react";
 import { Layout } from "../layout/Layout";
-import { getTestDrive } from "../service/vehicleService";
-import { useAuthContext } from "../context/AuthContext";
+import { useVehicle } from "../context/VehicleContext";
 
 export const Dashboard = () => {
-  const { user } = useAuthContext();
-  const [testDrive, setTestDrive] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const getTestDriveData = async () => {
-    setLoading(true);
-    try {
-      const result = await getTestDrive();
-      setTestDrive(result);
-    } catch (error) {
-      console.error(error);
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
+  const { testDrive } = useVehicle();
+  const stateStyle = {
+    Activo: "bg-green-100 text-green-700 border border-green-300",
+    Pendiente: "bg-yellow-100 text-yellow-700 border border-yellow-300",
+    Cancelado: "bg-red-100 text-red-700 border border-red-300",
+    Completado: "bg-blue-100 text-blue-700 border border-blue-300",
+    Expirado: "bg-gray-100 text-gray-500 border border-gray-300",
   };
-  useEffect(() => {
-    getTestDriveData();
-  }, [user]);
   return (
     <>
       <Layout>
@@ -67,7 +54,12 @@ export const Dashboard = () => {
                         ></div>
                         <div className="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
                         <div className="absolute top-4 right-4">
-                          <span className="bg-primary text-black text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                          <span
+                            className={`px-2 py-1 rounded-full text-sm font-medium ${
+                              stateStyle[item.id_estado.estado] ??
+                              "bg-gray-100 text-gray-500"
+                            }`}
+                          >
                             {item.id_estado.estado}
                           </span>
                         </div>
