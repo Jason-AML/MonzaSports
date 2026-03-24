@@ -6,7 +6,7 @@ import {
   getTestDrive,
 } from "../service/vehicleService";
 import { useAuthContext } from "../context/AuthContext";
-import { notifiTestDrive } from "../n8n/notifyTestDrive";
+import { notifiTestDrive } from "../service/notifyTestDrive";
 
 export const useDataVehicle = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -18,6 +18,7 @@ export const useDataVehicle = () => {
 
   const requestVehicle = useCallback(async () => {
     setLoading(true);
+    setError(null);
     try {
       const data = await getVehicle();
       setVehicles(data);
@@ -31,6 +32,7 @@ export const useDataVehicle = () => {
 
   const getCategory = useCallback(async () => {
     setLoading(true);
+    setError(null);
     try {
       const result = await getMarcas();
       setMarcas(result);
@@ -44,6 +46,7 @@ export const useDataVehicle = () => {
 
   const getTestDriveData = useCallback(async () => {
     setLoading(true);
+    setError(null);
     try {
       const result = await getTestDrive();
       setTestDrive(result);
@@ -57,7 +60,7 @@ export const useDataVehicle = () => {
 
   const insertTestDrive = async (formTestDrive) => {
     if (!user) return;
-    setLoading(true);
+    setError(null);
     try {
       const newTestDrive = await createTestDrive(formTestDrive);
       await getTestDriveData();
@@ -65,8 +68,6 @@ export const useDataVehicle = () => {
     } catch (err) {
       setError(err);
       throw err;
-    } finally {
-      setLoading(false);
     }
   };
 
