@@ -34,7 +34,7 @@ export const Navbar = () => {
             <NavLink className={linkStyle} to="/collections">
               {t("nav.link_1")}
             </NavLink>
-            <NavLink className={linkStyle} to="*">
+            <NavLink className={linkStyle} to="/dealers">
               {t("nav.link_2")}
             </NavLink>
             <NavLink className={linkStyle} to="*" href="*">
