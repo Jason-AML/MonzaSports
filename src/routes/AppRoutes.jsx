@@ -8,6 +8,9 @@ import { VehicleContextProvider } from "../context/VehicleContext";
 const Home = lazy(() =>
   import("../pages/Home").then((m) => ({ default: m.Home })),
 );
+const Mapa = lazy(() =>
+  import("../pages/PaginaMapa").then((m) => ({ default: m.PaginaMapa })),
+);
 const Collections = lazy(() =>
   import("../pages/Collections").then((m) => ({ default: m.Collections })),
 );
@@ -40,7 +43,7 @@ export const AppRoutes = () => {
       >
         <Routes>
           <Route path="/" element={<Home />} />
-
+          <Route path="/mapa" element={<Mapa />} />
           <Route element={<VehicleContextProvider />}>
             <Route path="/collections" element={<Collections />} />
             <Route path="/details/:id" element={<Details />} />
@@ -49,7 +52,7 @@ export const AppRoutes = () => {
               <Route path="/reservation/:id" element={<Reservation />} />
             </Route>
           </Route>
-
+          <Route path="/" element={<Home />} />
           <Route
             path="/login"
             element={
