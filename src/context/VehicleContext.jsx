@@ -12,30 +12,10 @@ export const useVehicle = () => {
 };
 
 export const VehicleContextProvider = ({ children }) => {
-  const {
-    vehicles,
-    marcas,
-    testDrive,
-    loading,
-    error,
-    insertTestDrive,
-    requestVehicle,
-    getCategory,
-  } = useDataVehicle();
+  const value = useDataVehicle();
 
   return (
-    <VehicleContext.Provider
-      value={{
-        vehicles,
-        marcas,
-        testDrive,
-        loading,
-        error,
-        insertTestDrive,
-        requestVehicle,
-        getCategory,
-      }}
-    >
+    <VehicleContext.Provider value={value}>
       {children ?? <Outlet />}
     </VehicleContext.Provider>
   );
