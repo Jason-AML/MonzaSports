@@ -23,7 +23,7 @@ export const Register = () => {
 
     try {
       await signUpNewUser(email, password);
-      toast.success(t("register.toast.succes"));
+      toast.success(t("register.toast.success"));
       navigate("/login");
     } catch (error) {
       console.error("Error:", error.message);
@@ -45,106 +45,110 @@ export const Register = () => {
 
   return (
     <>
-      <main className="flex w-full min-h-screen font-display bg-white">
-        {/* LEFT SECTION */}
-        <section className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{
-              backgroundImage:
-                "url('https://lh3.googleusercontent.com/aida-public/AB6AXuAUPkaWhL28AXDlUqiGfaAnR1B7j0ZlL_wZHqNH06TSuKAEOxhbAmWfhpCqEALucQXLv3mQ1amzSPwpx-e4JhBqshDiSXsN9Amb6k0MAVTJv8IydERw1aLXkIWfisR4lGqZK7115PRwqkiRUvxxfqDnznCSqRd1FWpZzk_nKh9xVCajAXiFa9iP_mgmePRq9cYUiQB_FENHBw3d9e16kxj0RCbaMI1zU4LofeEomLVaDY7yROohtZZVLaOvhz2N-GKQl7DpcC7Mm1c')",
-            }}
-          >
-            <div className="absolute inset-0 bg-linear-to-t from-apex-dark/80 via-apex-dark/20 to-transparent"></div>
-          </div>
+      <main role="main" aria-label="Inicio de sesión" className="relative min-h-screen overflow-hidden bg-slate-950 text-white">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.2),transparent_25%),radial-gradient(circle_at_bottom_right,_rgba(16,185,129,0.18),transparent_25%)]" aria-hidden="true" />
+      <div className="relative mx-auto flex min-h-screen w-full max-w-6xl items-center px-6 py-12">
+        <div className="grid w-full gap-10 lg:grid-cols-[1.2fr_0.9fr]">
+          <section aria-label="Presentación de Monza Motors" className="hidden overflow-hidden rounded-[40px] border border-white/10 bg-slate-900/80 p-10 shadow-2xl shadow-cyan-500/10 lg:block">
+            <div className="flex h-full flex-col justify-between gap-8">
+              <div>
+                <span className="inline-flex rounded-full border border-cyan-300/30 bg-cyan-400/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">
+                  Monza Motors
+                </span>
+                <h1 className="mt-8 text-5xl font-black tracking-tight text-white">
+                  {t("register.join_title")}
+                </h1>
+                <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+                  {t("register.join_subtitle")}
+                </p>
+              </div>
 
-          <div className="relative z-10 p-16 flex flex-col justify-between w-full h-full">
-            <div className="flex items-center gap-3">
-              <h2 className="text-2xl font-bold tracking-tighter text-white">
-                MONZA MOTORS
-              </h2>
-            </div>
+              <div className="grid gap-6 text-slate-300">
+                <div className="rounded-3xl bg-slate-800/70 p-6 ring-1 ring-white/10">
+                  <p className="text-xs uppercase tracking-[0.32em] text-slate-400">Experiencia</p>
+                  <p className="mt-3 text-3xl font-semibold text-white">+25 años</p>
+                </div>
+                <div className="rounded-3xl bg-slate-800/70 p-6 ring-1 ring-white/10">
+                  <p className="text-xs uppercase tracking-[0.32em] text-slate-400">Confianza</p>
+                  <p className="mt-3 text-3xl font-semibold text-white">Clientes Premium</p>
+                </div>
+              </div>
 
-            <div className="max-w-md">
-              <h1 className="text-6xl font-bold text-accent tracking-tighter mb-6 leading-none">
-                {t("register.join_title")}
-              </h1>
-              <p className="text-gray-300 text-xl font-medium leading-relaxed">
-                {t("register.join_subtitle")}
+              <p className="text-sm uppercase tracking-[0.3em] text-slate-500">
+                Est. 1998 • Automotive Excellence
               </p>
             </div>
+          </section>
 
-            <div className="flex items-center gap-4 text-white/60 text-sm tracking-widest uppercase">
-              <span>Est. 1998</span>
-              <span className="w-12 h-px bg-white/20"></span>
-              <span>Automotive Excellence</span>
-            </div>
-          </div>
-        </section>
-
-        {/* RIGHT SECTION */}
-        <section className="w-full lg:w-1/2 flex items-center justify-center p-8 md:p-16">
-          <div className="w-full max-w-md">
-            <div className="mb-10 lg:hidden flex items-center gap-3">
-              <span className="material-symbols-outlined text-primary text-3xl">
-                flare
-              </span>
-              <h2 className="text-xl font-bold tracking-tighter">
-                APEX MOTORS
-              </h2>
-            </div>
-
-            <header className="mb-10">
-              <h2 className="text-3xl font-bold tracking-tight mb-2 text-accent">
-                {t("register.title")}
-              </h2>
-              <p className="text-gray-500">{t("register.subtitle")}</p>
-            </header>
-
-            {/* FORM */}
-            <form className="space-y-5" onSubmit={handleSubmit}>
+          <section className="rounded-[40px] bg-white/95 p-8 shadow-2xl shadow-slate-950/20 backdrop-blur-xl text-slate-950">
+            <div className="mb-8 flex items-center justify-between gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-black mb-2">
+                <p className="text-sm uppercase tracking-[0.35em] text-cyan-600">Bienvenido</p>
+                <h2 className="mt-3 text-3xl font-semibold">{t("register.title")}</h2>
+              </div>
+              <span className="inline-flex rounded-2xl bg-cyan-50 px-4 py-2 text-sm font-medium text-cyan-700">
+                Monza Sports
+              </span>
+            </div>
+
+            <p className="mb-10 text-sm leading-6 text-slate-600">
+              {t("register.subtitle")}
+            </p>
+
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="login-email" className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 mb-2">
                   {t("register.email_label")}
                 </label>
                 <input
-                  className="w-full px-4 py-3 bg-apex-gray rounded-xl text-black form-input-focus"
-                  placeholder="julian@example.com"
+                  id="register-email"
                   type="email"
+                  value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  autoComplete="email"
+                  required
+                  className="w-full rounded-3xl border border-slate-200 bg-slate-100 px-4 py-3 text-slate-950 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-200"
+                  placeholder="julian@example.com"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-widest text-black mb-2">
+                <label htmlFor="register-password" className="block text-xs font-semibold uppercase tracking-[0.3em] text-slate-500 mb-2">
                   {t("register.password_label")}
                 </label>
                 <input
-                  className="w-full px-4 py-3 bg-apex-gray rounded-xl text-black form-input-focus"
-                  placeholder="••••••••"
+                  id="register-password"
                   type="password"
+                  value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                  required
+                  className="w-full rounded-3xl border border-slate-200 bg-slate-100 px-4 py-3 text-slate-950 outline-none transition focus:border-cyan-400 focus:ring-4 focus:ring-cyan-200"
+                  placeholder="••••••••"
                 />
               </div>
 
               <button
+                type="submit"
                 disabled={loading}
-                className="w-full py-4 bg-[#00D3BB] text-apex-dark font-bold uppercase tracking-widest rounded-xl hover:shadow-lg hover:text-white hover:shadow-primary/20 transition-all active:scale-[0.98]"
+                className="w-full rounded-3xl bg-cyan-500 px-5 py-4 text-sm font-semibold uppercase tracking-[0.25em] text-slate-950 transition hover:bg-cyan-400 disabled:cursor-not-allowed disabled:opacity-70"
               >
-                {t("register.btn")}
+                {loading ? t("register.btn") : t("register.btn")}
               </button>
             </form>
-            <div className=" flex justify-between text-black">
-              <Link to="/login" className=" hover:text-accent pt-5">
+
+            <div className="mt-8 flex flex-col gap-4 text-sm text-slate-600 sm:flex-row sm:items-center sm:justify-between">
+              <Link to="/login" className="font-medium text-cyan-600 transition hover:text-cyan-500">
                 {t("register.has_account")}
               </Link>
-              <Link to="/" className=" hover:text-accent pt-5">
+              <Link to="/" className="font-medium text-slate-500 transition hover:text-slate-700">
                 {t("register.back_home")}
               </Link>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
+        </div>
+      </div>
+    </main>
     </>
   );
 };
