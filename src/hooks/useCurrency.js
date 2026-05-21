@@ -3,27 +3,45 @@ import { useTranslation } from "react-i18next";
 
 const BASE_CURRENCY = "USD";
 
+const currencyMap = {
+  "es-CO": "COP",
+  es: "COP",
+  "en-US": "USD",
+  en: "USD",
+};
+
 export const useCurrency = () => {
   const { i18n } = useTranslation();
-  const [rates, setRates] = useState({});
-
-  const currencyMap = {
-    "es-CO": "COP",
-    es: "COP",
-    "en-US": "USD",
-    en: "USD",
-  };
-
   const locale = i18n.language ?? "en";
   const targetCurrency = currencyMap[locale] ?? "USD";
+
+  const [rates, setRates] = useState({});
+  const [loading, setLoading] = useState(targetCurrency !== BASE_CURRENCY);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (targetCurrency === BASE_CURRENCY) return;
 
-    fetch(`https://api.exchangerate-api.com/v4/latest/${BASE_CURRENCY}`)
-      .then((res) => res.json())
+    const controller = new AbortController();
+
+    setLoading(true);
+    setError(null);
+
+    fetch(`https://api.exchangerate-api.com/v4/latest/${BASE_CURRENCY}`, {
+      signal: controller.signal,
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Error al obtener tasas de cambio");
+        return res.json();
+      })
       .then((data) => setRates(data.rates))
-      .catch(() => console.error("Error al obtener tasas de cambio"));
+      .catch((err) => {
+        if (err.name === "AbortError") return;
+        setError(err.message);
+      })
+      .finally(() => setLoading(false));
+
+    return () => controller.abort();
   }, [targetCurrency]);
 
   const format = (priceInUSD) => {
@@ -37,5 +55,5 @@ export const useCurrency = () => {
     }).format(converted);
   };
 
-  return { format };
+  return { format, loading, error };
 };
