@@ -58,12 +58,13 @@ export const useDataVehicle = () => {
   const insertTestDrive = async (formTestDrive) => {
     if (!user) return;
     setLoading(true);
+    setError(null);
     try {
       const newTestDrive = await createTestDrive(formTestDrive);
-      await getTestDriveData();
+      setTestDrive((prev) => [...prev, newTestDrive]); 
       await notifiTestDrive(newTestDrive.id, user.email);
     } catch (err) {
-      setError(err);
+      setError(err.message || "Error al crear la prueba de manejo");
       throw err;
     } finally {
       setLoading(false);
