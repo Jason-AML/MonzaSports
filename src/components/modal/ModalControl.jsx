@@ -19,7 +19,6 @@ export const ModalControl = ({ action, children, color = "#00D3BB" }) => {
           <div className="h-screen w-screen flex justify-center overflow-scroll ">
             {children({ closeModal })}
           </div>
-
           <div className="modal-backdrop" onClick={closeModal} />
         </div>
       )}
