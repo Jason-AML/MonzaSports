@@ -1,3 +1,5 @@
+import { t } from "i18next";
+
 const en = {
   nav: {
     link_1: "Collections",
@@ -38,6 +40,11 @@ const en = {
     join_title: "JOIN THE INNER CIRCLE",
     join_subtitle:
       "Access exclusive vehicle releases, member-only track events, and personalized automotive services tailored for the discerning driver.",
+    toast: {
+      success: "Welcome",
+      error: "Error",
+      invalid_credentials: "Invalid login credentials",
+    },
   },
   register: {
     title: "Create your account",

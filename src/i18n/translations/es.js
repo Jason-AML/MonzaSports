@@ -39,8 +39,9 @@ const es = {
     join_subtitle:
       "Accede a lanzamientos exclusivos, eventos en pista para miembros y servicios automotrices personalizados para el conductor exigente.",
     toast: {
-      succes: "Bienvenido",
+      success: "Bienvenido",
       error: "Error",
+      invalid_credentials: "Credenciales de inicio de sesión inválidas",
     },
   },
   register: {
